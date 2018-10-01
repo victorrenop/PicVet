@@ -1,0 +1,46 @@
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-title">
+        Pic<strong>Vet</strong>
+      </h2>
+    </div>
+
+    <form class="list-form" #f="ngForm" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(f)" novalidate>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input  name="email" type="email" formControlName="email" [(ngModel)]="username" ngModel required ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Senha
+        </ion-label>
+        <ion-input name="passwd" type="password" formControlName="password" ngModel required></ion-input>
+      </ion-item>
+    </form>
+
+    <p *ngIf="error" text-left ion-text color="danger">{{errorText}}</p>
+
+    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Esqueceu a Senha?</strong></p>
+
+    <div>
+      <button ion-button icon-start round full tappable class="login-button" (click)="parseLogin()">
+        <ion-icon name="key"></ion-icon>
+        ENTRAR
+      </button>
+    </div>
+
+
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()" >Novo Aqui? <strong>Cadastre-se</strong></span>
+    </div>
+
+  </div>
+</ion-content>
