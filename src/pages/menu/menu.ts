@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { PageInterface } from '../../models/page.interface';
 import { UserNoPwd } from '../../models/user-nopwd.interface';
 
@@ -15,7 +15,7 @@ export class MenuPage {
 
   private user: UserNoPwd;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
   	this.pages = [
   		{ title: 'Home', component: 'HomePage', icon: 'home'},
   		{ title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
@@ -27,6 +27,11 @@ export class MenuPage {
 
   openPage(page){
   	this.nav.setRoot(page.component, {userData: this.user});
+  }
+
+  logOut(){
+    this.menu.toggle();
+    this.nav.setRoot('LoginPage');
   }
 
 }

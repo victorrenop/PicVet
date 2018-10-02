@@ -45,6 +45,8 @@ export class LoginPage {
         data =>{
           this.user = {
             name : data.name,
+            lastName: data.lastName,
+            phone: data.phone,
             cep : data.cep,
             email : data.email,
             avatar: data.avatar  
