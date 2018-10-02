@@ -37,6 +37,7 @@
   background-size: cover;
   .scroll-content{
     padding: 0 !important;
+    overflow: hidden;
 
     .profile-separator{
       padding: 18px;
@@ -101,6 +102,41 @@
   }
 }
 
+.register-page{
+  background: url("../assets/imgs/bg.jpg") no-repeat;
+  background-size: cover;
+  .scroll-content {
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .login-button{
+      background-color: darken(color($colors, primary), 35%);
+      margin-top: 50px;
+    }
+
+    .list-form {
+      padding: 0;
+      margin-bottom: 0;
+      margin-left: 15px;
+      margin-right: 15px;
+      ion-item {
+        padding: 0;
+        border-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
+        ion-label {
+          font-size: 1em;
+          color: darken(color($colors, primary), 35%);
+        }
+
+        ion-input {
+          color: color($colors, primary);
+        }
+      }
+    }
+  }
+}
+
 .auth-page {
     content: "";
     background: url("../assets/imgs/bg.jpg") no-repeat;
@@ -116,6 +152,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     .login-content {
       width: 86%;
@@ -139,12 +176,14 @@
         margin-bottom: 0;
         ion-item {
           padding: 0;
+          border-color: rgba(0, 0, 0, 0);
+          background-color: rgba(0, 0, 0, 0);
           ion-label {
             font-size: 1em;
             color: darken(color($colors, primary), 35%);
           }
 
-          input {
+          ion-input {
             color: color($colors, primary);
           }
         }

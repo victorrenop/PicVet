@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, MenuController, ToastController } from 'ionic-angular';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { LoginService } from '../../providers/login-service';
 import { UserNoPwd } from '../../models/user-nopwd.interface';
 import 'rxjs/add/operator/catch';
@@ -31,7 +31,7 @@ export class LoginPage {
   }
 
  register() {
-    this.nav.setRoot('UserProfilePage');
+    this.nav.push('RegisterPage');
   }
 
   parseLogin(){
