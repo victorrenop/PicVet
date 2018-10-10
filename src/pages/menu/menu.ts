@@ -19,7 +19,7 @@ export class MenuPage {
   	this.pages = [
   		{ title: 'Home', component: 'HomePage', icon: 'home'},
   		{ title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
-  		{ title: 'Gerenciar Pets', component: 'PetProfilePage', icon: 'paw'},
+  		{ title: 'Gerenciar Pets', component: 'ManagePetPage', icon: 'paw'},
   		{ title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'}
   	];
     this.user = this.navParams.get('userData');

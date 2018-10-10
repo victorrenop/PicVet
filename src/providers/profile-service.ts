@@ -13,5 +13,4 @@ export class ProfileService{
 
 	 constructor(private http: Http) {
   }
-
 }

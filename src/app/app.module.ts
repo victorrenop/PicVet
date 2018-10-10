@@ -6,8 +6,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { LoginService } from '../providers/login-service';
 import { ProfileService } from '../providers/profile-service';
+import { PetService } from '../providers/pet-service';
+
+import { ManagePetPageModule } from '../pages/manage-pet/managepet.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { MenuPageModule } from '../pages/menu/menu.module';
+import { HomePageModule } from '../pages/home/home.module';
+import { PetProfilePageModule } from '../pages/pet-profile/pet-profile.module';
+import { RegisterPageModule } from '../pages/register/register.module';
+import { SearchPageModule } from '../pages/search/search.module';
+import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
 
 import { MyApp } from './app.component';
+
+console.log(ManagePetPageModule);
 
 @NgModule({
   declarations: [
@@ -16,7 +28,14 @@ import { MyApp } from './app.component';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ManagePetPageModule,
+    LoginPageModule,
+    MenuPageModule,
+    PetProfilePageModule,
+    RegisterPageModule,
+    SearchPageModule,
+    UserProfilePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -27,6 +46,7 @@ import { MyApp } from './app.component';
     SplashScreen,
     LoginService,
     ProfileService,
+    PetService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
