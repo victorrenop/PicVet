@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginService } from '../../providers/login-service';
 import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
-import { UserNoPwd } from '../../models/user-nopwd.interface';
+import { User } from '../../models/user.interface';
+import { RegisterService } from '../../providers/register-service';
 import 'rxjs/add/operator/catch';
 
 @IonicPage()
@@ -18,8 +19,9 @@ export class RegisterPage {
 	private cep: string;
 	private name: string;
 	private lastName: string;
-  private user: UserNoPwd;
+  private userData: User;
   private type: string;
+  private formError: boolean;
 
   private validationMsgs = {
   	'email': [
@@ -35,7 +37,8 @@ export class RegisterPage {
   		{type: 'maxlength', message: 'Maximo 30 caracteres'},
   	],
   	'phone': [
-  		{type: 'required', message: 'Preencha um numero de telefone'}
+  		{type: 'required', message: 'Preencha um numero de telefone'},
+  		{type: 'pattern', message: 'Preencha um numero de telefone valido'}
   	],
   	'cep': [
   		{type: 'required', message: 'Preencha um CEP valido'},
@@ -67,18 +70,28 @@ export class RegisterPage {
   private emailPattern: string = '^[^\s@]+@[^\s@]+\.[^\s@]{2,}$';
   private cepPattern: string = '[0-9]+-[0-9]+';
   private namePattern: string = '[a-zA-Z]+[\ ]*[a-zA-Z]+';
+  private phonePattern: string = '[0-9][0-9][0-9]+';
   private loginFormGroup: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private login: LoginService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private login: LoginService, private registerServ: RegisterService) {
   	this.loginFormGroup = formBuilder.group({
       email: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(this.emailPattern), Validators.required])],
       password: ['', Validators.compose([Validators.maxLength(30), Validators.minLength(6), Validators.required])],
-      phone: [''],
-      cep: [''],
-      name: [''],
-      lastName: ['']
+      phone: ['', Validators.compose([Validators.pattern(this.phonePattern)])],
+      cep: ['', Validators.compose([Validators.pattern(this.cepPattern)])],
+      name: ['', Validators.compose([Validators.minLength(1), Validators.maxLength(30), Validators.pattern(this.namePattern)])],
+      lastName: ['', Validators.compose([Validators.minLength(1), Validators.maxLength(30), Validators.pattern(this.namePattern)])]
     });
-    console.log(this.errors);
+    this.formError = false;
+    this.userData = {
+    	email : '',
+    	password: '',
+    	cep: '',
+    	phone: '',
+    	name: '',
+    	lastName: '',
+    	avatar: ''
+    }
   }
 
   getMsg(name, error){
@@ -111,6 +124,7 @@ export class RegisterPage {
 		        	console.log(keyError);
 		        	let error = this.errors.filter(data => data.name == key)[0];
 		        	if( !error.cond ){
+		        		this.formError = true;
 			        	error.cond = true;
 			        	error.message = this.getMsg(key, keyError);
 		        	}
@@ -120,6 +134,7 @@ export class RegisterPage {
   }
 
   setAllErrors(condition){
+  	this.formError = false;
   	this.errors.forEach(element => {
   		element.cond = condition;
   	});
@@ -128,6 +143,17 @@ export class RegisterPage {
 	register(){
 		this.setAllErrors(false);
 		this.getFormValidationErrors();
+		console.log(this.errors);
+		if( !this.formError ){
+			this.userData.avatar = '../../assets/imgs/random.jpg';
+			this.userData.name = this.name;
+			this.userData.lastName = this.lastName;
+			this.userData.cep = this.cep;
+			this.userData.phone = this.phone;
+			this.userData.email = this.username;
+			this.userData.password = this.password;
+			this.registerServ.postUserInformation(this.userData);
+		}
 	}  
 
 }

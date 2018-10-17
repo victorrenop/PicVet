@@ -18,14 +18,15 @@ export class PetService{
 	 constructor(private http: Http) {
   }
 
-  public getPetInformation(): Promise<Pets> {
+  public getPetInformation(): Observable<Pets> {
     return this.http.get(this.baseUrl)
-      .toPromise()
-      .then((response) => {
-        return response.json();
-      })
-      .catch ((err) => {
-        console.log(err);
+      .map( (data: Response) => data.json())
+      //.toPromise()
+      //.then((response) => {
+      //  return response.json();
+      //})
+      .catch ((err: Response) => {
+        return Observable.throw(err);
       });
   }
 }

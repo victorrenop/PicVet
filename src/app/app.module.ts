@@ -16,6 +16,8 @@ import { PetProfilePageModule } from '../pages/pet-profile/pet-profile.module';
 import { RegisterPageModule } from '../pages/register/register.module';
 import { SearchPageModule } from '../pages/search/search.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
+import { RegisterService } from '../providers/register-service';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 
@@ -47,7 +49,10 @@ console.log(ManagePetPageModule);
     LoginService,
     ProfileService,
     PetService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RegisterService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation
   ]
 })
 export class AppModule {}
