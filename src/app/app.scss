@@ -32,6 +32,111 @@
   color: color($colors, primary);
 }
 
+.blank-space{ 
+  padding: 15px;
+}
+
+
+.search-page{
+  .scroll-content{
+    padding: 0 !important;
+    overflow: hidden;
+    .search-bar{
+      background-color: color($colors, primary);
+      padding: 20px;
+      padding-bottom: 0px;
+      .location-input{
+        width: 50%;
+      }
+
+      .data-input{
+        width: 45%;
+      }
+
+      .data-input-right{
+        width: 45%;
+        float: right;
+      }
+
+      .tabs-selector{
+        .tabs{
+          align-items: center;
+          padding-left: 12px;
+          .active{
+            color: white;
+            border-bottom: 2px solid white;
+          }
+
+          .disable{
+            color: lighten(gray, 75%);
+          }
+
+          label{
+            min-width: 75px;
+            max-width: 75px;
+            padding: 5px;
+            display: inline-block;
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .information-selector{
+
+      .tabs{
+        align-items: center;
+        padding-left: 20px;
+        padding-bottom: 6px;
+        padding-top: 6px;
+        background-color: color($colors, primary);
+        label{
+          color: white;
+          min-width: 115px;
+          max-width: 115px;
+          padding: 0px;
+          display: inline-block;
+          text-align: center;
+        }
+      }
+    }
+
+    .store-cards{
+      padding: 6px;
+      .info{
+        display: inline-block;
+        img{
+          padding: 6px;
+        }
+        h1{
+          padding: 6px;
+          color: darken(color($colors, primary), 20%);
+        }
+        h2{
+          padding: 6px;
+          color: darken(color($colors, primary), 20%);
+        }
+      }
+
+      .ratings{
+        display: inline-block;
+        text-align: right;
+        label{
+          width: 140px !important; 
+          padding: 6px;
+          display: block;
+          text-align: right;
+          color: darken(color($colors, primary), 20%);
+        }
+        .stars{
+          padding: 6px;
+          color: darken(yellow, 5%);
+        }
+      }
+    }
+  }
+}
+
 .profile-page{
   background: url("../assets/imgs/bg.jpg") no-repeat;
   background-size: cover;
@@ -117,6 +222,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+
 
     .login-button{
       background-color: darken(color($colors, primary), 35%);

@@ -10,26 +10,56 @@
 </ion-header>
 
 
-<ion-content >
+<ion-content class="search-page">
 
-	<div style="background-color: #5c89e2;padding: 20px;">
-		<input type="text" class="css-input" placeholder="O que você está procurando?" style="width: 100%"/>
+	<div class="search-bar">
+		<input type="text" class="css-input loctaion-input" placeholder="O que você está procurando?" style="width: 100%">
 	
-		<div style="padding: 15px;"></div>
+		<div class="blank-space"></div>
 
 		<div style="width: 100%; display: inline-block;">
-			<input type="text" class="css-input" placeholder="Onde?" style="width: 45%">
+			<input type="text" class="data-input css-input" placeholder="Onde?">
 
-			<input type="text" class="css-input" placeholder="Quando?" style="width: 45%; float: right;">		
+			<input type="text" class="data-input-right css-input" placeholder="Quando?">		
 		</div>
 
-		<div style="padding: 5px;"></div>	
+		<div class="blank-space"></div>
+
+		<div class="tabs-selector">
+			<div class="tabs">
+				<label *ngIf="tabs.cons" class="active" tappable (click)="toggleCons()">Consultas</label>
+				<label *ngIf="!tabs.cons" class="disabled" tappable (click)="toggleCons()">Consultas</label>
+
+				<label *ngIf="tabs.exam" class="active" tappable (click)="toggleExam()">Exames</label>
+				<label *ngIf="!tabs.exam" class="disabled" tappable (click)="toggleExam()">Exames</label>
+
+				<label *ngIf="tabs.bath" class="active" tappable (click)="toggleBath()">Banho</label>
+				<label *ngIf="!tabs.bath" class="disabled" tappable (click)="toggleBath()">Banho</label>
+
+				<label *ngIf="tabs.tosa" class="active" tappable (click)="toggleTosa()">Tosa</label>
+				<label *ngIf="!tabs.tosa" class="disabled" tappable padding (click)="toggleTosa()">Tosa</label>
+			</div>
+		</div>
 	</div>
-	
-	<!--
-	<ion-content text-center>
-		<img src="../../assets/imgs/pets.jpg"  />
-	</ion-content>
-	-->
+
+	<div style="padding: 8px;"></div>
+
+	<div *ngIf="map" class="map">
+
+	</div>	
+
+	<ion-scroll scrollY="true" style="height: 400px" *ngIf="!map">
+		<ion-list>
+			<store-info *ngFor="let s of sts" [store]="s"></store-info>
+		</ion-list>
+	</ion-scroll>
+
+	<ion-footer class="information-selector" >
+		<div class="tabs">
+			<label padding>Resultados ({{results}})</label>
+			<label icon-start style="padding-left: 6px;" tappable (click)="selectOrder()"><ion-icon name="list"></ion-icon> Ordenar</label>
+			<label icon-start style="padding-right: 6px;" tappable (click)="toggleMap()"><ion-icon name="pin"></ion-icon> Mapa</label>
+		</div>
+	</ion-footer>
 	
 </ion-content>

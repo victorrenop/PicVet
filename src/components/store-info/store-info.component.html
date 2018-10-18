@@ -1,0 +1,14 @@
+<ion-card class="store-cards">
+	<img src="{{store.logo}}">
+	<div class="info">
+		<h2 align-left>{{store.name}}</h2>
+		<h2 align-left>{{store.address}}</h2>
+	</div>
+
+	<div class="ratings">
+		<div class="stars">
+			<ion-icon *ngFor="let s of stars" name={{s}}></ion-icon>
+		</div>
+		<label>{{store.totalRatings}} Avaliações</label>
+	</div>
+</ion-card>
