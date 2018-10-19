@@ -44,13 +44,11 @@
 
 	<div style="padding: 8px;"></div>
 
-	<div *ngIf="map" class="map">
+	<div #map id='map' *ngIf="maps"></div>
 
-	</div>	
-
-	<ion-scroll scrollY="true" style="height: 400px" *ngIf="!map">
+	<ion-scroll scrollY="true" style="height: 400px" *ngIf="!maps">
 		<ion-list>
-			<store-info *ngFor="let s of sts" [store]="s"></store-info>
+			<store-info *ngFor="let s of sts" [store]="s" tappable (click)="showStore(s)"></store-info>
 		</ion-list>
 	</ion-scroll>
 

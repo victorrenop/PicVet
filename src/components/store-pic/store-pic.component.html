@@ -1,0 +1,9 @@
+<ion-item class="store-pic" text-center>
+	<div class="avatar-img">
+		<ion-avatar>
+			<img src={{store.logo}}>
+		</ion-avatar>
+	</div>
+	<label *ngFor="let t of store.types">{{t}} </label>
+	<p>Aberto de: {{store.open}}</p>
+</ion-item>

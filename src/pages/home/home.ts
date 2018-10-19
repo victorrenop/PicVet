@@ -34,7 +34,7 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.showMap();
+    //this.showMap();
   }
 
   getPosition(){

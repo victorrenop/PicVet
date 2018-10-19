@@ -36,6 +36,58 @@
   padding: 15px;
 }
 
+.store-page{
+  .scroll-content{
+    overflow: hidden;
+    padding: 0 !important;
+    .store-pic{ 
+      border-color: rgba(0, 0, 0, 0);
+      //background-color: color($colors, primary);
+      background: url("../assets/imgs/bluebg4.jpg") no-repeat;
+      background-size: cover;
+      padding: 0;
+
+      .item-inner{
+        padding: 0;
+        border-width: 0;
+      }
+
+      .avatar-img img{
+        margin: auto;
+        border-radius:50%;
+        height:14rem;
+        width:14rem;
+        border-width: 1px;
+        border-color: white;
+        border-style: double;
+      }
+      label{
+        margin-top: 10px;
+        color: white;
+
+      }
+      p{
+        color: white;
+        opacity: 0.6;
+        margin-top: 10px; 
+      }
+    }
+
+    .service-type{
+      background-color: gray;
+      text-align: center;
+      padding: 18px;
+      border-color: #f2f2f2;
+      border-style: groove;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 0;
+      border-right-width: 0;
+      background-color: #f3f2f7;
+    }
+  }
+}
+
 
 .search-page{
   .scroll-content{

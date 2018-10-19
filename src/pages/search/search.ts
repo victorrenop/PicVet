@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { UserNoPwd } from '../../models/user-nopwd.interface';
 import { StoreInterface } from '../../models/store.interface';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the SearchPage page.
@@ -10,12 +11,18 @@ import { StoreInterface } from '../../models/store.interface';
  * Ionic pages and navigation.
  */
 
+declare var L: any;
+
 @IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
 })
 export class SearchPage {
+	@ViewChild('map') mapRef: ElementRef;
+  map: any;
+  pos: any;
+
 	private user: UserNoPwd;
 	private tabs = {
 		cons: false,
@@ -23,7 +30,7 @@ export class SearchPage {
 		bath: false,
 		tosa: false
 	};
-	private map: boolean;
+	private maps: boolean;
 	private sort = {
 		name: { toggle: true, asc: true, dsc: false},
 		meanRatings: { toggle: false, asc: true, dsc: false},
@@ -32,15 +39,24 @@ export class SearchPage {
 	private results: number;
 	private sts: StoreInterface[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private geolocation: Geolocation) {
   	this.user = this.navParams.get('userData');
-  	this.map = false;
+  	this.maps = false;
   	this.sts[0] = {
   		address: "Rua Barao, 25, Centro",
   		name: "PETVET",
   		logo: "../../assets/imgs/random.jpg",
   		totalRatings: 150,
-  		meanRating: 4.5
+  		meanRating: 4.5,
+      open: "Segunda a Sexta",
+      types:[
+        "Exames,",
+        "consultas",
+      ],
+      services:[
+        {name: "Exame do Pet", type: "Exame", details: "Exame com o a escolha de horario e medico", priceRange: "100-150", date: "Segunda a Sexta"},
+        {name: "Consulta Especializada", type: "Consultas", details: "Consulta para diversos tipos de problemas", priceRange: "100-150", date: "Segunda a Sexta"},
+      ]
   	};
 
   	this.sts[1] = {
@@ -48,7 +64,20 @@ export class SearchPage {
   		name: "Dogger",
   		logo: "../../assets/imgs/logoPicVet.png",
   		totalRatings: 250,
-  		meanRating: 3
+  		meanRating: 3,
+      open: "Terca a Domingo",
+      types:[
+        "Exames,",
+        "consultas,",
+        "banho,",
+        "tosa"
+      ],
+      services:[
+        {name: "Exame do Pet", type: "Exame", details: "Exame com o a escolha de horario e medico", priceRange: "50-150", date: "Terca a Sexta"},
+        {name: "Consulta Especializada", type: "Consultas", details: "Consulta para diversos tipos de problemas", priceRange: "100-150", date: "Terca a Sexta"},
+        {name: "Banho Completo", type: "Banho", details: "Banho com direito a shampoo premium", priceRange: "30-80", date: "Toda Semana"},
+        {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}
+      ]
   	};
   	this.results = this.sts.length;
   }
@@ -105,6 +134,12 @@ export class SearchPage {
       ]
     });
     order.present();
+  }
+
+  showStore(store: StoreInterface){
+    this.navCtrl.push('StoreOptionsPage', {
+      storeData: store
+    });
   }
 
   orderToggle(option: string ){
@@ -190,6 +225,42 @@ export class SearchPage {
   				( a.totalRatings > b.totalRatings ? -1 : 1 )
   			);
 	  }
+  }
+
+  toggleMap(){
+  	this.maps = !this.maps;
+  	/*if( this.map != undefined )
+  		this.map.remove();
+  	if( this.maps )
+  		this.showMap();*/
+  }
+
+  getPosition(){
+    this.geolocation.getCurrentPosition().then( resp => {
+      console.log(resp.coords.latitude);
+      console.log(resp.coords.longitude);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  showMap(){
+    this.getPosition();
+    console.log(this.pos);
+    var mymap = L.map('map').setView([51.505, -0.09], 13);
+	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	    maxZoom: 18,
+	    id: 'mapbox.streets',
+	    accessToken: 'pk.eyJ1IjoidmljdG9ycmVubyIsImEiOiJjam4ybHozaDQwbzU1M3ZuZDNraHdndmJ0In0.GRn1RsamZemHOmnn504lng'
+		}).addTo(mymap);
+    var circle = L.circle([51.508, -0.11], {
+	    color: 'red',
+	    fillColor: '#f03',
+	    fillOpacity: 0.5,
+	    radius: 500
+		}).addTo(mymap);
   }
 
   setAllTabs(){
