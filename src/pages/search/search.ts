@@ -50,11 +50,11 @@ export class SearchPage {
   		meanRating: 4.5,
       open: "Segunda a Sexta",
       types:[
-        "Exames,",
-        "consultas",
+        "Exames",
+        "Consultas",
       ],
       services:[
-        {name: "Exame do Pet", type: "Exame", details: "Exame com o a escolha de horario e medico", priceRange: "100-150", date: "Segunda a Sexta"},
+        {name: "Exame do Pet", type: "Exames", details: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting", priceRange: "100-150", date: "Segunda a Sexta"},
         {name: "Consulta Especializada", type: "Consultas", details: "Consulta para diversos tipos de problemas", priceRange: "100-150", date: "Segunda a Sexta"},
       ]
   	};
@@ -67,13 +67,13 @@ export class SearchPage {
   		meanRating: 3,
       open: "Terca a Domingo",
       types:[
-        "Exames,",
-        "consultas,",
-        "banho,",
-        "tosa"
+        "Exames",
+        "Consultas",
+        "Banho",
+        "Tosa"
       ],
       services:[
-        {name: "Exame do Pet", type: "Exame", details: "Exame com o a escolha de horario e medico", priceRange: "50-150", date: "Terca a Sexta"},
+        {name: "Exame do Pet", type: "Exames", details: "Exame com o a escolha de horario e medico", priceRange: "50-150", date: "Terca a Sexta"},
         {name: "Consulta Especializada", type: "Consultas", details: "Consulta para diversos tipos de problemas", priceRange: "100-150", date: "Terca a Sexta"},
         {name: "Banho Completo", type: "Banho", details: "Banho com direito a shampoo premium", priceRange: "30-80", date: "Toda Semana"},
         {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}

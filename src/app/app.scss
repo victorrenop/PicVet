@@ -40,6 +40,7 @@
   .scroll-content{
     overflow: hidden;
     padding: 0 !important;
+    background-image: radial-gradient(circle, #d5dfed, #f7f8f9, #a9c7f2);
     .store-pic{ 
       border-color: rgba(0, 0, 0, 0);
       //background-color: color($colors, primary);
@@ -74,16 +75,27 @@
     }
 
     .service-type{
-      background-color: gray;
       text-align: center;
-      padding: 18px;
-      border-color: #f2f2f2;
-      border-style: groove;
-      border-top-width: 1px;
-      border-bottom-width: 1px;
-      border-left-width: 0;
-      border-right-width: 0;
-      background-color: #f3f2f7;
+      padding: 10px;
+
+      ion-card{
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        margin: 0 !important;
+
+        ion-card-header{
+          text-align: left;
+        }
+        ion-card-content{
+          text-align: left;
+
+          p{
+            color: #a9a9a9;
+            padding-bottom: 5px;
+          }
+        }
+      }
     }
   }
 }

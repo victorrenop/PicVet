@@ -16,6 +16,13 @@
 <ion-content padding class="store-page">
 	<store-pic [store]="store"></store-pic>
 
-	<div *ngFor="let t of store.services" class="service-type">{{t.type}}</div>
+	<ion-scroll scrollY="true" style="height: 400px">
+		<div *ngFor="let t of store.types" class="service-type">
+			<h2>{{t}}</h2>
+			<div *ngFor="let s of store.services">
+				<service-card *ngIf="s.type === t" [service]="s" tappable (click)="selectService(s)"></service-card>
+			</div>
+		</div>
+	</ion-scroll>
 	
 </ion-content>

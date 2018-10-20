@@ -1,4 +1,14 @@
-<!-- Generated template for the ServiceCardComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-card >
+	<ion-card-header>
+		{{service.name}}
+	</ion-card-header>
+
+	<ion-card-content>
+		<p>{{service.details}}</p>
+		<div>
+			<label style="display: block; color: #ba160c;30;">{{service.date}}</label>
+			<label style="display: block; color: #ba160c; text-align: right;">R${{service.priceRange}}</label>
+		</div>
+	</ion-card-content>
+
+</ion-card>
