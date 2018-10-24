@@ -22,7 +22,7 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Senha
         </ion-label>
-        <ion-input name="passwd" type="password" formControlName="password" ngModel required></ion-input>
+        <ion-input name="passwd" type="password" formControlName="password" [(ngModel)]="password" ngModel required></ion-input>
       </ion-item>
     </form>
 
@@ -31,7 +31,7 @@
     <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Esqueceu a Senha?</strong></p>
 
     <div>
-      <button ion-button icon-start round full tappable class="login-button" (click)="parseLogin()">
+      <button ion-button icon-start round full tappable class="login-button" (click)="requestLogin()">
         <ion-icon name="key"></ion-icon>
         ENTRAR
       </button>

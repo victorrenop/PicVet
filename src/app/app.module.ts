@@ -4,9 +4,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+
 import { LoginService } from '../providers/login-service';
 import { ProfileService } from '../providers/profile-service';
 import { PetService } from '../providers/pet-service';
+import { BaseRestService } from '../providers/base-rest-service';
+
 
 import { ManagePetPageModule } from '../pages/manage-pet/managepet.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -49,6 +52,7 @@ console.log(ManagePetPageModule);
     LoginService,
     ProfileService,
     PetService,
+    BaseRestService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RegisterService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

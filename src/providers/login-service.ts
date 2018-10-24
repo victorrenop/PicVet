@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, RequestMethod, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -7,30 +7,41 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-import { User } from '../models/user.interface';
+import { LoginRequest } from '../models/AuthRequest/login.request';
+import { LoginResponse } from '../models/AuthResponse/login.response';
+
+var headers: Headers;
+headers = new Headers({'Content-Type': 'application/json'});
+
+const options = new RequestOptions({
+  method: RequestMethod.Post,
+  headers: headers,
+});
 
 @Injectable()
 export class LoginService{
-	private baseUrl: string = "http://localhost:3000/user";
-	private user: User;
 
-	 constructor(private http: Http) {
+  //MOVE TO CONFIG FILE
+  private userUrl: string = "https://picvetauth.azurewebsites.net/User";
+  private appId: string = "5e0dd296-abed-4da8-a674-b5e705bd91fa";
+	
+  constructor(private http: Http) {
+    
   }
-
-	getUserInformation(username: string): Observable<User>{
-  	return this.http.get(`${this.baseUrl}/${username}`)
-  		.map((data: Response) => data.json())
-  		.catch((error: Response) => {
+  
+  Login(email: string, password: string): Observable<LoginResponse> {
+        return this.http.post(`${this.userUrl}/${this.appId}/Login`, this.BuildLoginRequest(email, password), options)
+        .map((data: Response) => data.json())
+        .catch((error: Response) => {
         return Observable.throw(error.status);
-    });
-  }
+       });
+  };
 
-  parseUserInformation(username: string): void{
-  	this.getUserInformation(username).subscribe(
-      (data: User) => this.user = data,
-      err => {
-        return Observable.throw(err);
-      });
-  }
+  BuildLoginRequest(email: string, password: string): LoginRequest {
+      return {
+        email: email,
+        password: password
+      }
+  };
 
 }
