@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { LoginService } from '../providers/login-service';
 import { ProfileService } from '../providers/profile-service';
@@ -11,7 +12,7 @@ import { PetService } from '../providers/pet-service';
 import { BaseRestService } from '../providers/base-rest-service';
 
 
-import { ManagePetPageModule } from '../pages/manage-pet/managepet.module';
+import { ListOfPetsPageModule } from '../pages/list-of-pets/list-of-pets.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MenuPageModule } from '../pages/menu/menu.module';
 import { HomePageModule } from '../pages/home/home.module';
@@ -24,7 +25,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 
-console.log(ManagePetPageModule);
+console.log(ListOfPetsPageModule);
 
 @NgModule({
   declarations: [
@@ -34,13 +35,14 @@ console.log(ManagePetPageModule);
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    ManagePetPageModule,
+    ListOfPetsPageModule,
     LoginPageModule,
     MenuPageModule,
     PetProfilePageModule,
     RegisterPageModule,
     SearchPageModule,
-    UserProfilePageModule
+    UserProfilePageModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -21,10 +21,6 @@ export class PetService{
   public getPetInformation(): Observable<Pets> {
     return this.http.get(this.baseUrl)
       .map( (data: Response) => data.json())
-      //.toPromise()
-      //.then((response) => {
-      //  return response.json();
-      //})
       .catch ((err: Response) => {
         return Observable.throw(err);
       });

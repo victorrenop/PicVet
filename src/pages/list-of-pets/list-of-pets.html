@@ -1,15 +1,9 @@
-<!--
-  Generated template for the ManagepetPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar color="primary">
   <button ion-button menuToggle>
   	<ion-icon name="menu"></ion-icon>
   </button>
-    <ion-title align="center" class="title-button">Gerenciar Pets</ion-title>
+    <ion-title align="center" class="title-button">Lista de animais</ion-title>
     <ion-buttons end>
         <button ion-button icon-only (click)="addPet()"><ion-icon name="add"></ion-icon></button>
     </ion-buttons>
@@ -26,13 +20,6 @@
     <ion-avatar tappable>
       <img src={{pet.avatar}}>
     </ion-avatar>
-
-    <!--<ion-thumbnail item-start>
-      <img src="../../assets/imgs/canguru.jpg">
-    </ion-thumbnail>
-    <h2>Jack</h2>
-    <p>Canguru</p>
-    <button ion-button  (click)="openDetpetPage()" clear item-end>View</button>-->
   </ion-item>
 </ion-list>
 </ion-content>

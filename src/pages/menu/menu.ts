@@ -16,12 +16,7 @@ export class MenuPage {
   private user: UserNoPwd;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
-  	this.pages = [
-  		{ title: 'Home', component: 'HomePage', icon: 'home'},
-  		{ title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
-  		{ title: 'Gerenciar Pets', component: 'ManagePetPage', icon: 'paw'},
-  		{ title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'}
-  	];
+  	this.buildPageValues();
     this.user = this.navParams.get('userData');
   }
 
@@ -32,6 +27,16 @@ export class MenuPage {
   logOut(){
     this.menu.toggle();
     this.nav.setRoot('LoginPage');
+  }
+
+  buildPageValues()
+  {
+    this.pages = [
+      { title: 'Home', component: 'HomePage', icon: 'home'},
+      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
+      { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
+      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'}
+    ];
   }
 
 }

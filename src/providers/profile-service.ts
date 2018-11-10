@@ -11,6 +11,7 @@ import 'rxjs/add/observable/throw';
 export class ProfileService{
 	private baseUrl: string = "http://localhost:3000/user";
 
-	 constructor(private http: Http) {
-  }
+	constructor(private http: Http) {
+		
+  	}
 }
