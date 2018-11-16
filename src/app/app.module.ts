@@ -23,6 +23,8 @@ import { UserProfilePageModule } from '../pages/user-profile/user-profile.module
 import { RegisterService } from '../providers/register-service';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { Push } from '@ionic-native/push';
+
 import { MyApp } from './app.component';
 
 console.log(ListOfPetsPageModule);
@@ -55,6 +57,7 @@ console.log(ListOfPetsPageModule);
     ProfileService,
     PetService,
     BaseRestService,
+    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RegisterService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
