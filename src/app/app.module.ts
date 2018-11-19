@@ -19,6 +19,8 @@ import { SearchPageModule } from '../pages/search/search.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { Push } from '@ionic-native/push';
+
 import { MyApp } from './app.component';
 
 @NgModule({
@@ -47,6 +49,7 @@ import { MyApp } from './app.component';
     SplashScreen,
     BaseRestService,
     LoginService,
+    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation
