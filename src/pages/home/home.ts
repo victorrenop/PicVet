@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { UserNoPwd } from '../../models/user-nopwd.interface';
 import { Geolocation } from '@ionic-native/geolocation';
 
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 declare var L: any;
 
 @IonicPage()
@@ -30,7 +23,6 @@ export class HomePage {
 
   ionViewWillLoad() {
     this.user = this.navParams.get('userData');
-    console.log(this.user);
   }
 
   ionViewDidLoad(){
@@ -48,21 +40,21 @@ export class HomePage {
   }
 
   showMap(){
-    this.getPosition();
-    console.log(this.pos);
-    var mymap = L.map('map').setView([51.505, -0.09], 13);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoidmljdG9ycmVubyIsImEiOiJjam4ybHozaDQwbzU1M3ZuZDNraHdndmJ0In0.GRn1RsamZemHOmnn504lng'
-}).addTo(mymap);
-    var circle = L.circle([51.508, -0.11], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(mymap);
+      this.getPosition();
+      console.log(this.pos);
+      var mymap = L.map('map').setView([51.505, -0.09], 13);
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: 'pk.eyJ1IjoidmljdG9ycmVubyIsImEiOiJjam4ybHozaDQwbzU1M3ZuZDNraHdndmJ0In0.GRn1RsamZemHOmnn504lng'
+    }).addTo(mymap);
+      var circle = L.circle([51.508, -0.11], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 500
+    }).addTo(mymap);
   }
 
 }

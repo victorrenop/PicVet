@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { PageInterface } from '../../models/page.interface';
 import { UserNoPwd } from '../../models/user-nopwd.interface';
+import { LoginService } from '../../providers/login-service';
 
 @IonicPage()
 @Component({
@@ -15,9 +16,14 @@ export class MenuPage {
 
   private user: UserNoPwd;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams, 
+              private menu: MenuController, 
+              private loginService: LoginService) {
+
   	this.buildPageValues();
     this.user = this.navParams.get('userData');
+  
   }
 
   openPage(page){
@@ -25,8 +31,21 @@ export class MenuPage {
   }
 
   logOut(){
-    this.menu.toggle();
-    this.nav.setRoot('LoginPage');
+
+      this.loginService.Logout()
+      .then((isLoggedOut) =>
+      {
+        if (isLoggedOut)
+        {
+            this.menu.toggle();
+            this.nav.setRoot('LoginPage')
+        }
+        else
+            console.log("Não deslogou:" + isLoggedOut);        
+      },(err) =>
+      {
+            console.log("Erro ao deslogar:" + err);        
+      });
   }
 
   buildPageValues()

@@ -14,5 +14,4 @@ import { UserNoPwd }  from '../../models/user-nopwd.interface';
 export class ProfilePicComponent {
 
   @Input() user: UserNoPwd;
-
 }

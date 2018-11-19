@@ -64,7 +64,7 @@ export class LoginPage {
           phone: "11987450578",
           cep : "04814250",
           email : "iggormagro8@gmail.com",
-          avatar: "avatar"  
+          avatar: "../../assets/imgs/random.jpg"  
         };
   };
 

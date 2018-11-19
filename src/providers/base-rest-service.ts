@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, RequestMethod, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -18,8 +18,9 @@ export class BaseRestService
   private serverBaseUrl: string = "https://picvetauth.azurewebsites.net/";
   private localBaseUrl: string = "http://localhost:53213/";
   private mockBaseUrl: string = "http://localhost:3000";
+  private httpTest;
   
-  constructor(private http: Http){
+  constructor(public http: Http){
   }
   
   public url = {
@@ -27,16 +28,15 @@ export class BaseRestService
   };
 
   public DataService<T>(url) : any {
-           let functions = {
-            get: function() : Observable<T>{
-                console.log(this.http);
+           var self = this;
 
-                return this.http.get(this.baseUrl)
+           return {
+            get: function() : Observable<T>{
+                return self.http.get(url)
                 .map((data: Response) => data.json())
                 .catch ((err: Response) => {
                     return Observable.throw(err);
                 });
-
             },
             save: function(entity, parameters, forcePost){
 
@@ -66,8 +66,6 @@ export class BaseRestService
 
             }
         };
-
-        return functions;
-  }
+    }
 }
 
