@@ -17,8 +17,8 @@ export class RegisterService{
 	private requestOptions: RequestOptions;
 
 	constructor(private http: Http) { 
-		this.headers.append("Accept", 'application/json');
-		this.headers.append('Content-Type', 'application/json');
+		//this.headers.append("Accept", 'application/json');
+		//this.headers.append('Content-Type', 'application/json');
 	}
 
 	postUserInformation(user: User){

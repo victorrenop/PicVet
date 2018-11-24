@@ -152,7 +152,7 @@ export class RegisterPage {
 			this.userData.phone = this.phone;
 			this.userData.email = this.username;
 			this.userData.password = this.password;
-			this.registerServ.postUserInformation(this.userData);
+			//this.registerServ.postUserInformation(this.userData);
 		}
 	}  
 
