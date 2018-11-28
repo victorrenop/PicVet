@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { UserNoPwd } from '../../models/user-nopwd.interface';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+//import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 declare var L: any;
 
@@ -19,12 +19,12 @@ export class HomePage {
 
 	private user: UserNoPwd;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, private geolocation: Geolocation, private push: Push) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, private geolocation: Geolocation/*, private push: Push*/) {
   	menu.enable(true);
 
-    this.push.hasPermission().then((res: any) => {
+   /* this.push.hasPermission().then((res: any) => {
       if (res.isEnabled) {
-        alert('Tem permissão');/*console.log('We have permission to send push notifications');*/
+        alert('Tem permissão');console.log('We have permission to send push notifications');
 
         const options: PushOptions = {
            android: {},
@@ -42,16 +42,16 @@ export class HomePage {
         const pushObject: PushObject = this.push.init(options);
 
         pushObject.on('notification').subscribe((notification: any) => {
-          alert(notification.message);/*console.log('Received a notification', notification));*/
+          alert(notification.message);console.log('Received a notification', notification));
         });
         pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
 
         pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
       } else {
-        alert('Não tem permissão');/*console.log('We do not have permission to send push notifications');*/
+        alert('Não tem permissão');console.log('We do not have permission to send push notifications');
       }
-     });
+     });*/
 
   }
 

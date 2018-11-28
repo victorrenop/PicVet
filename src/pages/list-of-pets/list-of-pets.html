@@ -1,25 +1,28 @@
 <ion-header>
   <ion-navbar color="primary">
-  <button ion-button menuToggle>
-  	<ion-icon name="menu"></ion-icon>
-  </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title align="center" class="title-button">Lista de animais</ion-title>
     <ion-buttons end>
-        <button ion-button icon-only (click)="addPet()"><ion-icon name="add"></ion-icon></button>
+      <button ion-button icon-only (click)="addPet()">
+        <ion-icon name="add"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-<ion-list>
-  <ion-item *ngFor="let pet of pets" (click)="onSelect(pet)">
-    <h3>{{pet.name}}</h3>
-    <p> {{pet.breed}} </p>
-    <ion-avatar tappable>
-      <img src={{pet.avatar}}>
-    </ion-avatar>
-  </ion-item>
-</ion-list>
+  <ion-list>
+
+    <ion-item *ngFor="let pet of pets" (click)="onSelect(pet)">
+    
+      <ion-avatar tappable item-start>
+        <img src={{pet.avatar}}>
+      </ion-avatar>
+      <h3>{{pet.name}}</h3>
+      <p> {{pet.breed}} </p>
+    </ion-item>
+  </ion-list>
 </ion-content>

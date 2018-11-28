@@ -17,9 +17,12 @@ import { PetProfilePageModule } from '../pages/pet-profile/pet-profile.module';
 import { RegisterPageModule } from '../pages/register/register.module';
 import { SearchPageModule } from '../pages/search/search.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
+import { BookModule } from '../pages/book/book.module';
+import { LogModule } from '../pages/log/log.module';
+
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { Push } from '@ionic-native/push';
+//import { Push } from '@ionic-native/push';
 
 import { MyApp } from './app.component';
 
@@ -38,6 +41,8 @@ import { MyApp } from './app.component';
     RegisterPageModule,
     SearchPageModule,
     UserProfilePageModule,
+    BookModule,
+    LogModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -49,7 +54,7 @@ import { MyApp } from './app.component';
     SplashScreen,
     BaseRestService,
     LoginService,
-    Push,
+   // Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation

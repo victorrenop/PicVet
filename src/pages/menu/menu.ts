@@ -51,10 +51,11 @@ export class MenuPage {
   buildPageValues()
   {
     this.pages = [
-      { title: 'Home', component: 'HomePage', icon: 'home'},
-      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
+      { title: 'Inical', component: 'HomePage', icon: 'home'},
+      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'},
+      { title: 'Serviços', component: 'BookPage', icon: 'md-cart'},
       { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
-      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'}
+      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'}
     ];
   }
 

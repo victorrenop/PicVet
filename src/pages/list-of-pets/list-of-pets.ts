@@ -22,8 +22,15 @@ export class ListOfPetsPage {
 
   constructor(public navCtrl: NavController, public baseRestService: BaseRestService, public navParams: NavParams, private alertCtrl: AlertController) {
       this.url = this.baseRestService.url.petServiceUrl;
-      this.petService = this.baseRestService.DataService<Pets>(this.url);
-      this.loadAnimals();      
+      var petServicePromisse = this.baseRestService.DataService<Pets>(this.url);
+
+      petServicePromisse.then(
+        (val) => { 
+          this.petService = val
+          this.loadAnimals();
+        },
+        (err) => console.error(err)
+      );
   };
 
   loadAnimals()
@@ -33,7 +40,8 @@ export class ListOfPetsPage {
           let i = 0;
 
           for( let p in data ){
-            this.pets[i++] = data[0]
+            this.pets[i] = data[i]
+            i++;
           }
         },
       (error) => {

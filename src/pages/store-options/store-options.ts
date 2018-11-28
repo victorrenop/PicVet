@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StoreInterface } from '../../models/store.interface';
 import { ServiceInterface } from '../../models/service.interface';
 
-/**
- * Generated class for the StoreOptionsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-store-options',
