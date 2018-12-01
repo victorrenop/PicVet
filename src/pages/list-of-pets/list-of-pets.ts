@@ -5,6 +5,7 @@ import { Pets } from '../../models/pet.interface';
 
 import { BaseRestService } from '../../providers/base-rest-service';
 import { PetProfilePage } from '../pet-profile/pet-profile';
+import { AddPetPage } from '../add-pet/add-pet';
 
 @IonicPage({
   segment: "Pet"
@@ -51,6 +52,11 @@ export class ListOfPetsPage {
 
   onSelect(item){
     this.navCtrl.push(PetProfilePage, {pet: item});
+  }
+
+  addPet()
+  {
+    this.navCtrl.push(AddPetPage);
   }
  
   ionViewDidLoad() {

@@ -19,6 +19,7 @@ import { SearchPageModule } from '../pages/search/search.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
 import { BookModule } from '../pages/book/book.module';
 import { LogModule } from '../pages/log/log.module';
+import { AddPetPageModule } from '../pages/add-pet/add-pet.module';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Calendar } from '@ionic-native/calendar';
@@ -40,6 +41,7 @@ import { MyApp } from './app.component';
     HttpModule,
     IonicModule.forRoot(MyApp),
     ListOfPetsPageModule,
+    AddPetPageModule,
     LoginPageModule,
     MenuPageModule,
     PetProfilePageModule,
