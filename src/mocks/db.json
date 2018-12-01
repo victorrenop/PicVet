@@ -1,35 +1,4 @@
 {
-	"user":[{
-		"id": "victorrenop16@gmail.com",
-		"password": "teste123",
-		"name": "Victor",
-		"lastName": "Reno Poglioni",
-		"phone": "12998281354",
-		"cep": "12328470",
-		"avatar": "../../assets/imgs/random.jpg",
-		"email": "victorrenop16@gmail.com"
-	},
-	{
-		"id": "iggormagro8@gmail.com",
-		"password": "teste123",
-		"name": "Victor",
-		"lastName": "Reno Poglioni",
-		"phone": "12998281354",
-		"cep": "12328470",
-		"avatar": "../../assets/imgs/random.jpg",
-		"email": "victorrenop16@gmail.com"
-	},
-	{
-		"id": "klara.sati.07@gmail.com",
-		"password": "123teste",
-		"name": "Klara",
-		"lastName": "Sati Kague",
-		"phone": "12958221314",
-		"cep": "13859712",
-		"avatar": "../../assets/imgs/random.jpg",
-		"email": "klara.sati.07@gmail.com"
-	}],
-	
 	"pet":[{
 		"id": "01",
 		"name": "Jack",

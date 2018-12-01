@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { PageInterface } from '../../models/page.interface';
 import { UserNoPwd } from '../../models/user-nopwd.interface';
+import { LoginService } from '../../providers/login-service';
 
 @IonicPage()
 @Component({
@@ -15,9 +16,15 @@ export class MenuPage {
 
   private user: UserNoPwd;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menu: MenuController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams, 
+              private menu: MenuController, 
+              private loginService: LoginService) {
+
   	this.buildPageValues();
     this.user = this.navParams.get('userData');
+    this.menu.enable(true);
+  
   }
 
   openPage(page){
@@ -25,8 +32,22 @@ export class MenuPage {
   }
 
   logOut(){
-    this.menu.toggle();
-    this.nav.setRoot('LoginPage');
+
+      /*this.loginService.Logout()
+      .then((isLoggedOut) =>
+      {
+        if (isLoggedOut)
+        {
+            this.menu.toggle();
+            this.nav.setRoot('LoginPage')
+        }
+        else
+            console.log("Não deslogou:" + isLoggedOut);        
+      },(err) =>
+      {
+            console.log("Erro ao deslogar:" + err);        
+      });*/
+      this.nav.setRoot('LoginPage');
   }
 
   buildPageValues()
@@ -35,8 +56,9 @@ export class MenuPage {
       { title: 'Home', component: 'HomePage', icon: 'home'},
       { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
       { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
-      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'}
+      { title: 'Pesquisa de Serviços', component: 'SearchPage', icon: 'search'},
+      { title: 'Agenda de Serviços', component: 'CalendarPage', icon: 'calendar'},
+      { title: 'Carteira de Vacinas', component: 'VaccinePage', icon: 'list'}
     ];
   }
-
 }

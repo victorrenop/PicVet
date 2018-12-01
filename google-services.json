@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "806862292386",
+    "firebase_url": "https://bravo-picvet.firebaseio.com",
+    "project_id": "bravo-picvet",
+    "storage_bucket": "bravo-picvet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806862292386:android:90664d9ac7490a20",
+        "android_client_info": {
+          "package_name": "com.bravo.picvetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806862292386-jbjpafgs2qsmpp61ide4u6pitqqiurbh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzcyOyn8v--BOsfBUn27ukz45_4rKPqRs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,11 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { LoginService } from '../providers/login-service';
-import { ProfileService } from '../providers/profile-service';
-import { PetService } from '../providers/pet-service';
 import { BaseRestService } from '../providers/base-rest-service';
-
+import { LoginService } from '../providers/login-service';
 
 import { ListOfPetsPageModule } from '../pages/list-of-pets/list-of-pets.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -20,12 +17,15 @@ import { PetProfilePageModule } from '../pages/pet-profile/pet-profile.module';
 import { RegisterPageModule } from '../pages/register/register.module';
 import { SearchPageModule } from '../pages/search/search.module';
 import { UserProfilePageModule } from '../pages/user-profile/user-profile.module';
-import { RegisterService } from '../providers/register-service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Calendar } from '@ionic-native/calendar';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { CalendarModule, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
+//import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
+
+import { Push } from '@ionic-native/push';
 
 import { MyApp } from './app.component';
-
-console.log(ListOfPetsPageModule);
 
 @NgModule({
   declarations: [
@@ -42,6 +42,8 @@ console.log(ListOfPetsPageModule);
     RegisterPageModule,
     SearchPageModule,
     UserProfilePageModule,
+   // BrowserAnimationsModule,
+   // CalendarWeekHoursViewModule,
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -51,14 +53,13 @@ console.log(ListOfPetsPageModule);
   providers: [
     StatusBar,
     SplashScreen,
-    LoginService,
-    ProfileService,
-    PetService,
     BaseRestService,
+    LoginService,
+    Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RegisterService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Geolocation
+    Geolocation,
+    Calendar
   ]
 })
 export class AppModule {}

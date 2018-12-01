@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginService } from '../../providers/login-service';
 import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { User } from '../../models/user.interface';
-import { RegisterService } from '../../providers/register-service';
 import 'rxjs/add/operator/catch';
 
 @IonicPage()
@@ -73,7 +72,7 @@ export class RegisterPage {
   private phonePattern: string = '[0-9][0-9][0-9]+';
   private loginFormGroup: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private login: LoginService, private registerServ: RegisterService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private login: LoginService) {
   	this.loginFormGroup = formBuilder.group({
       email: ['', Validators.compose([Validators.maxLength(30), Validators.pattern(this.emailPattern), Validators.required])],
       password: ['', Validators.compose([Validators.maxLength(30), Validators.minLength(6), Validators.required])],

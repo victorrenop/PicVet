@@ -9,6 +9,10 @@ import 'rxjs/add/observable/throw';
 
 import { LoginRequest } from '../models/AuthRequest/login.request';
 import { LoginResponse } from '../models/AuthResponse/login.response';
+import { LogoutResponse } from '../models/AuthResponse/logout.response';
+
+import { Storage } from '@ionic/storage';
+
 
 var headers: Headers;
 headers = new Headers({'Content-Type': 'application/json'});
@@ -19,13 +23,13 @@ const options = new RequestOptions({
 });
 
 @Injectable()
-export class LoginService{
+export class LoginService {
 
   //MOVE TO CONFIG FILE
   private userUrl: string = "https://picvetauth.azurewebsites.net/User";
   private appId: string = "5e0dd296-abed-4da8-a674-b5e705bd91fa";
-	
-  constructor(private http: Http) {
+
+  constructor(private http: Http, private storage: Storage) {
     
   }
   
@@ -42,6 +46,34 @@ export class LoginService{
         email: email,
         password: password
       }
+  };
+
+  ExecuteRequest(val, scope):  Observable<LogoutResponse>
+  {
+      return scope.http.get(`${scope.userUrl}/${scope.appId}/Logout?logoutRequest.token=${val}`)
+           .map((data: Response) => data.json())
+           .catch ((err: Response) => {
+              return Observable.throw(err);
+           });
+  }
+
+  async getStorageValue(key: string, callback)
+  {
+      const result  = await this.storage.get(key);
+       
+      return new Promise((resolve, reject) => {
+        callback(result, this).subscribe(
+          data =>{
+              resolve(data.loggedOut);
+          },  
+          error =>{
+            resolve(false);
+          })
+      });
+  };
+
+  Logout() : any {
+      return this.getStorageValue('token', this.ExecuteRequest);
   };
 
 }
