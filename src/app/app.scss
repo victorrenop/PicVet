@@ -41,6 +41,7 @@
 
 .menu-button{
   color: color($colors, primary);
+  display: block !important;
 }
 
 .blank-space{ 
@@ -417,3 +418,153 @@
     }
   }
  }
+
+//Calendario
+.calendar-page{
+  background: url("../assets/imgs/bg.jpg") no-repeat;
+  background-size: cover;
+  [col-1] {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 8.33333%;
+    -ms-flex: 0 0 8.33333%;
+    flex: 0 0 14.285714285714286%;
+    width: 14.285714285714286%;
+    max-width: 14.285714285714286%;
+  }
+  .col {
+    text-align: center;
+    padding: 5px;
+  }
+  .last-month, .next-month {
+    color: #999999;
+    font-size: 90%;
+  }
+  .currentDate, .otherDate {
+    padding: 5px;
+  }
+  .currentDate {
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    border-radius: 30px;
+  }
+  .calendar-header {
+    background-color: darken(color($colors, primary), 15%);
+    color: #FFFFFF;
+  }
+  .event-bullet {
+    margin: 2px auto;
+    height: 5px;
+    width: 5px;
+    background-color: green;
+    border-radius: 30px;
+  }
+  .selected-date {
+    width: 20px;
+    height: 2px;
+    background-color: blue;
+  }
+  .unselected-date {
+    border: none;
+  }
+  .calendar-body {
+    .grid {
+      padding: 0;
+    }
+    .col:last-child {
+      border-right: none;
+    }
+    .calendar-weekday, .calendar-date {
+      text-align: center;
+      margin: 0;
+    }
+    .calendar-weekday {
+      font-weight: bold;
+      border-bottom: solid 1px #1a732d;
+      background-color: color($colors, primary);
+    }
+    .calendar-date {
+      border-top: solid 1px #1a732d;
+      border-bottom: solid 1px #1a732d;
+    }
+  }
+  .event-list{
+    text-align: center;
+    padding: 10px;
+
+    ion-card{
+      display: flex;
+      flex-direction: column;
+      width: 100% !important;
+      margin: 0 !important;
+
+      ion-card-header{
+        text-align: left;
+      }
+      ion-card-content{
+        text-align: left;
+        padding: 8px;
+
+        p{
+          color: #a9a9a9;
+          padding-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+.vaccine-page{
+  background: url("../assets/imgs/bg.jpg") no-repeat;
+  background-size: cover;
+  .profile-separator{
+    padding: 18px;
+    border-color: #f2f2f2;
+    border-style: groove;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-right-width: 0;
+    background-color: #f3f2f7;
+  }
+  .profile-pic{ 
+    border-color: rgba(0, 0, 0, 0);
+    //background-color: color($colors, primary);
+    background: url("../assets/imgs/bluebg4.jpg") no-repeat;
+    background-size: cover;
+    padding: 0;
+
+    .item-inner{
+        padding: 0;
+        border-width: 0;
+    }
+
+    .avatar-img img{
+      margin: auto;
+      border-radius:50%;
+      height:14rem;
+      width:14rem;
+      border-width: 1px;
+      border-color: white;
+      border-style: double;
+    }
+    h1{
+      margin-top: 10px;
+      color: white;
+
+    }
+    p{
+      color: white;
+      opacity: 0.6;
+      margin-top: 10px; 
+    }
+  }
+  .card{
+    height: 100px;
+    margin-bottom: 7px; 
+    p{
+      color: #a9a9a9;
+      padding-bottom: 5px;
+    }
+  }
+}

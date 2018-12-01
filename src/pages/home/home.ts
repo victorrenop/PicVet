@@ -17,15 +17,14 @@ export class HomePage {
   map: any;
   pos: any;
 
-	private user: UserNoPwd;
+  private user: UserNoPwd;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, private geolocation: Geolocation/*, private push: Push*/) {
-  	menu.enable(true);
+    menu.enable(true);
 
    /* this.push.hasPermission().then((res: any) => {
       if (res.isEnabled) {
         alert('Tem permissão');console.log('We have permission to send push notifications');
-
         const options: PushOptions = {
            android: {},
            ios: {
@@ -38,16 +37,12 @@ export class HomePage {
                pushServiceURL: 'http://push.api.phonegap.com/v1/push'
            }
         };
-
         const pushObject: PushObject = this.push.init(options);
-
         pushObject.on('notification').subscribe((notification: any) => {
           alert(notification.message);console.log('Received a notification', notification));
         });
         pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
-
         pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-
       } else {
         alert('Não tem permissão');console.log('We do not have permission to send push notifications');
       }

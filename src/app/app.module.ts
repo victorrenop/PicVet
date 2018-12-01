@@ -22,6 +22,10 @@ import { LogModule } from '../pages/log/log.module';
 import { AddPetPageModule } from '../pages/add-pet/add-pet.module';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { Calendar } from '@ionic-native/calendar';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { CalendarModule, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
+//import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
 
 //import { Push } from '@ionic-native/push';
 
@@ -59,7 +63,8 @@ import { MyApp } from './app.component';
    // Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Geolocation
+    Geolocation,
+    Calendar
   ]
 })
 export class AppModule {}
