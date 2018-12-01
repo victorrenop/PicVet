@@ -26,11 +26,7 @@ export class VaccinePage {
 	  	{name: "Tetano", description: "Anti-Teteanica", date: ""},
 	  	{name: "Sei la", description: "HEHEHHE", date: ""}
   	];
-  	this.pet = {
-  		name: "Pietro",
-  		breed: "Satanas com Demonio",
-  		avatar: "../../assets/imgs/satanas.jpeg"
-  	};
+  	this.pet = this.navParams.get('pet');
   }
 
   vaccineDetails(v: VaccineInterface) {
