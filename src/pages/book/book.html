@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title align="center" class="title-button">Reservas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="book-page" padding>
+      <ion-list>
+          <ion-item *ngFor="let book of books" (click)="onSelect(book)">
+            <ion-avatar item-start>
+              <img src={{book.avatar}}>
+            </ion-avatar>
+      
+            <h3>Serviço: {{book.service}}</h3>
+            <p> Estado: {{book.status}} </p>
+            <p> Responsável: {{book.employee}} </p>
+            <p> Data: {{book.date}}</p>
+          </ion-item>
+        </ion-list>
+</ion-content>

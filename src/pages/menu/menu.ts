@@ -53,12 +53,14 @@ export class MenuPage {
   buildPageValues()
   {
     this.pages = [
-      { title: 'Home', component: 'HomePage', icon: 'home'},
-      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'},
+      { title: 'Inical', component: 'HomePage', icon: 'home'},
+      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'},
+      { title: 'Serviços', component: 'BookPage', icon: 'md-cart'},
       { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
       { title: 'Pesquisa de Serviços', component: 'SearchPage', icon: 'search'},
       { title: 'Agenda de Serviços', component: 'CalendarPage', icon: 'calendar'},
-      { title: 'Carteira de Vacinas', component: 'VaccinePage', icon: 'list'}
+      { title: 'Carteira de Vacinas', component: 'VaccinePage', icon: 'list'},
+      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'}
     ];
   }
 }

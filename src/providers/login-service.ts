@@ -26,8 +26,8 @@ const options = new RequestOptions({
 export class LoginService {
 
   //MOVE TO CONFIG FILE
-  private userUrl: string = "https://picvetauth.azurewebsites.net/User";
-  private appId: string = "5e0dd296-abed-4da8-a674-b5e705bd91fa";
+  private userUrl: string = "http://localhost:53213/PicVetAuth/Service/User";
+  private appId: string = "43491601-3d26-4b77-8774-13b5a5359233";
 
   constructor(private http: Http, private storage: Storage) {
     

@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title align="center" class="title-button">Log de atividades</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+
+  <ion-content>
+      <ion-list>
+          <ion-item *ngFor="let log of logs">
+            <h3>Serviço: {{log.situation}}</h3>
+            <h3>Serviço: {{log.observation}}</h3>
+          </ion-item>
+        </ion-list>
+  </ion-content>
