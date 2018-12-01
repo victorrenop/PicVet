@@ -36,10 +36,7 @@ export class LogPage {
 
     }
 
-
     loadLogs() {
-
-        console.log(this.book);
 
         this.logService.get(this.book)
             .subscribe(data => {

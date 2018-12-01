@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="Adicionar"></ion-icon>
+    </button>
+    <ion-title align="center" class="title-button">Adicionar pet</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form class="list-form" #f="ngForm" [formGroup]="addPetFormGroup" (ngSubmit)="createPet()" novalidate>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon name="person" item-start class="text-primary"></ion-icon>
+        Nome:
+      </ion-label>
+      <ion-input name="name" type="text" formControlName="name" [(ngModel)]="pet.name" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon class="icon icon-md ion-md-paw item-icon" name="bug" item-start class="text-primary"></ion-icon>
+        Espécie:
+      </ion-label>
+      <ion-input name="species" type="text" formControlName="species" [(ngModel)]="pet.species" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon name="bug" item-start class="text-primary"></ion-icon>
+        Raça:
+      </ion-label>
+      <ion-input name="breed" type="text" formControlName="breed" [(ngModel)]="pet.breed" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon name="date" item-start class="text-primary"></ion-icon>
+        Data de nascimento
+      </ion-label>
+      <ion-datetime name="date" formControlName="date" displayFormat="DD/MM/YY" pickerFormat="DD/MM/YY" [(ngModel)]="pet.date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon name="bug" item-start class="text-primary"></ion-icon>
+        Cor:
+      </ion-label>
+      <ion-input name="color" type="text" formControlName="color" [(ngModel)]="pet.color" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        <ion-icon name="bug" item-start class="text-primary"></ion-icon>
+        Peso:
+      </ion-label>
+      <ion-input name="weight" type="number" formControlName="weight" [(ngModel)]="pet.weight" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floatting>
+        Sexo:
+      </ion-label>
+      <ion-select formControlName="sex" [(ngModel)]="pet.sex">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button style="margin-top: 10%;" type="submit" ion-button icon-start round full tappable class="login-button">
+      <ion-icon name="paper-plane"></ion-icon>
+      Adicionar
+    </button>
+
+  </form>
+
+  <ion-item *ngIf="error">
+    <p  text-left ion-text color="danger">{{errorText}}</p>
+  </ion-item>
+
+
+</ion-content>
