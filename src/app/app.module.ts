@@ -22,6 +22,7 @@ import { LogModule } from '../pages/log/log.module';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Calendar } from '@ionic-native/calendar';
+import { CepService } from '../providers/cep-service';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { CalendarModule, CalendarDateFormatter, CalendarEventTitleFormatter } from 'angular-calendar';
 //import { CalendarWeekHoursViewModule } from 'angular-calendar-week-hours-view';
@@ -58,6 +59,7 @@ import { MyApp } from './app.component';
     SplashScreen,
     BaseRestService,
     LoginService,
+    CepService,
    // Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
