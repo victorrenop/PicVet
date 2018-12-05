@@ -31,41 +31,45 @@ export class LoginService {
   private url;
   private petOwnerServicePromisse;
   private petOwnerService;
-  private authUserResponse: any;
 
   constructor(private http: Http, private storage: Storage, public baseRestService: BaseRestService) {
-    this.url = this.baseRestService.url.petServiceUrl;
+    this.url = this.baseRestService.url.petOwnerUrl;
     this.petOwnerServicePromisse = this.baseRestService.DataService<any>(this.url);
   }
 
   CreateUser(user: any) {
 
-
     this.CreateUserAuth(user)
       .subscribe(data => {
-        this.authUserResponse = data;
+        let parameters = [data.json(), user];
+        this.ExecuteCallbackThenResolved(this.CreatePetOwner, parameters);
       },
         (error) => {
           console.log("error: " + error);
         });
 
-        console.log(this.authUserResponse);
   }
 
   private CreateUserAuth(user: any) {
-    return this.http.post(`${this.userUrl}/${this.appId}/Create`, this.BuildCreateUserRequest(user), options)
-      .map((data: Response) => { data.json() })
-      .catch((error: Response) => {
-        return Observable.throw(error.status);
-      });
+    return this.http.post(`${this.userUrl}/${this.appId}/Create`, this.BuildCreateUserRequest(user), options);
   }
 
   private CreatePetOwner(list, self) {
-    console.log("Create Pet Owner");
     let authResponse = list[0];
     let user = list[1];
+    let resource = "/Create"
 
-    console.log(self.BuildCreatePetOwner(authResponse, user));
+    let petOwner = self.BuildCreatePetOwner(authResponse, user)
+    self.petOwnerService.post(petOwner, resource) 
+    .subscribe(data => {
+        console.log("CRIOU");
+        console.log(data);
+    },
+      (error) => {
+        console.log("error: " + error);
+      });
+    
+
     console.log(self.petOwnerService);
     console.log("Create Pet Owner - FINAl");
   }
@@ -122,8 +126,8 @@ export class LoginService {
   private BuildCreatePetOwner(authResponse: any, user: any) {
     return {
       name: user.name,
-      cpf: user.cpf,
-      userId: authResponse.id
+      CPF: user.cpf,
+      userId: authResponse.userId
     };
   }
 

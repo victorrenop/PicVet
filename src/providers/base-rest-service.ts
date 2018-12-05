@@ -22,13 +22,14 @@ const options = new RequestOptions({
 @Injectable()
 export class BaseRestService {
 
-    private localBaseUrl: string = "http://localhost:/PicVetAPI/Service";
+    private localBaseUrl: string = "http://localhost:51121/PicVetAPI/Service";
     private mockBaseUrl: string = "http://localhost:3000";
 
     constructor(public http: Http, public storage: Storage) {
     }
 
     public url = {
+        petOwnerUrl: this.localBaseUrl + '/PetOwner',
         petServiceUrl: this.mockBaseUrl + '/pet',
         bookServiceUrl: this.mockBaseUrl + '/book',
         bookLogServiceUrl: this.mockBaseUrl + '/bookLog',
@@ -84,12 +85,14 @@ export class BaseRestService {
             search: function (currentPage, pageSize, parameters, data) {
 
             },
-            post: function (data) {
-                return this.http.post(`${url}`, data, options)
-                .map((data: Response) => data.json())
-                .catch((error: Response) => {
-                  return Observable.throw(error.status);
-                });
+            post: function (data, customUrl) {
+
+                if (customUrl)
+                {
+                    url += customUrl;
+                }
+
+                return self.http.post(`${url}`, data, options);
             },
             reorder: function (entity, parameters) {
 
