@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { BaseRestService } from '../../providers/base-rest-service';
 import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
-
+import { Storage } from '@ionic/storage';
 declare var L: any;
 
 @IonicPage()
@@ -22,10 +22,14 @@ export class AddPetPage {
   private errorText: string;
   private error: boolean = false;
 
+  private petServiceUrl;
+  private petServicePromise;
 
-  constructor(public navCtrl: NavController, public baseRestService: BaseRestService, public navParams: NavParams, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public baseRestService: BaseRestService, public navParams: NavParams, public formBuilder: FormBuilder, private storage: Storage) {
     this.url = this.baseRestService.url.bookServiceUrl;
     this.builFormBuilder();
+    this.petServiceUrl = this.baseRestService.url.petServiceUrl;
+    this.petServicePromise = this.baseRestService.DataService<any>(this.petServiceUrl);
   }
 
   createPet() {
@@ -35,6 +39,19 @@ export class AddPetPage {
       return;
     }
     console.log(this.pet);
+
+    this.storage.get("petOwnerId").then((petOwnerId) => {
+      if (!petOwnerId) return;
+
+      this.petServicePromise.then((success) => {
+        success.post(this.pet, "/" + petOwnerId + "/Create").subscribe(data => {
+          console.log(data);
+          this.navCtrl.setRoot('ListOfPetsPage');
+        });
+      }, (error) => {
+        console.log("error");
+      });
+    });
   }
 
   buildErrorMessage() {

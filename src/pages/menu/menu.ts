@@ -52,7 +52,7 @@ export class MenuPage {
   buildPageValues()
   {
     this.pages = [
-      { title: 'Inical', component: 'HomePage', icon: 'home'},
+      { title: 'Inicial', component: 'HomePage', icon: 'home'},
       { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'},
       { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
       { title: 'Agenda de Serviços', component: 'CalendarPage', icon: 'calendar'},
