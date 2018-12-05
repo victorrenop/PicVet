@@ -23,14 +23,20 @@ export class SearchPage {
   map: any;
   pos: any;
 
+  // VARIAVEIS PARA FILTRO DE PESQUISA
+
+  private storeName: string;
+  private storeLocation:  string;
+  private storeDate: string;
+  // FILTRO POR CONSULTA, EXAME, BANHO E TOSA
+  private tabs = {
+    cons: false,
+    exam: false,
+    bath: false,
+    tosa: false
+  };
+
 	private user: UserNoPwd;
-	private tabs = {
-		cons: false,
-		exam: false,
-		bath: false,
-		tosa: false
-	};
-	private maps: boolean;
 	private sort = {
 		name: { toggle: true, asc: true, dsc: false},
 		meanRatings: { toggle: false, asc: true, dsc: false},
@@ -39,8 +45,15 @@ export class SearchPage {
 	private results: number;
 	private sts: StoreInterface[] = [];
 
+
+
+  private maps: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private geolocation: Geolocation) {
   	this.user = this.navParams.get('userData');
+    this.storeLocation = "";
+    this.storeDate = "";
+    this.storeName = "";
   	this.maps = false;
   	this.sts[0] = {
   		address: "Rua Barao, 25, Centro",
@@ -290,8 +303,14 @@ export class SearchPage {
   	this.tabs.tosa = !this.tabs.tosa;	
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
+  search(){
+    console.log( this.storeDate);
+    console.log( this.storeName);
+    console.log( this.storeLocation);
+    console.log( this.tabs.cons);
+    console.log( this.tabs.exam);
+    console.log( this.tabs.bath);
+    console.log( this.tabs.tosa);
   }
 
 }
