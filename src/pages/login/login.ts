@@ -112,5 +112,4 @@ export class LoginPage {
       password: ['', Validators.compose([Validators.maxLength(30), Validators.minLength(6), Validators.required])]
     });
   };
-
 }

@@ -13,6 +13,7 @@ import { LogoutResponse } from '../models/AuthResponse/logout.response';
 
 import { Storage } from '@ionic/storage';
 import { BaseRestService } from './base-rest-service';
+import { Subject } from 'rxjs/Subject';
 
 
 var headers: Headers;
@@ -38,40 +39,43 @@ export class LoginService {
   }
 
   CreateUser(user: any) {
+    var subject = new Subject<string>();
+    this.CreateUserAuth(user).subscribe(data => {
 
-    this.CreateUserAuth(user)
-      .subscribe(data => {
-        let parameters = [data.json(), user];
-        this.ExecuteCallbackThenResolved(this.CreatePetOwner, parameters);
-      },
-        (error) => {
-          console.log("error: " + error);
-        });
+      this.petOwnerServicePromisse.then(
+        (val) => {
+          this.petOwnerService = val;
+          this.CreatePetOwner(data.json(), user, this).subscribe((value) => subject.next(value));
+        },
+        (err) => {
+          return false;
+        }
+      );
+    },
+      (error) => {
+        console.log("error: " + error);
+      });
 
+    return subject.asObservable();
   }
 
   private CreateUserAuth(user: any) {
     return this.http.post(`${this.userUrl}/${this.appId}/Create`, this.BuildCreateUserRequest(user), options);
   }
 
-  private CreatePetOwner(list, self) {
-    let authResponse = list[0];
-    let user = list[1];
+  private CreatePetOwner(authResponse, user, self) {
     let resource = "/Create"
-
     let petOwner = self.BuildCreatePetOwner(authResponse, user)
-    self.petOwnerService.post(petOwner, resource) 
-    .subscribe(data => {
-        console.log("CRIOU");
-        console.log(data);
+    var subject = new Subject<string>();
+
+    self.petOwnerService.post(petOwner, resource).subscribe(data => {
+      subject.next(data._body);
     },
       (error) => {
         console.log("error: " + error);
       });
-    
 
-    console.log(self.petOwnerService);
-    console.log("Create Pet Owner - FINAl");
+    return subject.asObservable();
   }
 
   Login(email: string, password: string): Observable<LoginResponse> {
@@ -129,18 +133,5 @@ export class LoginService {
       CPF: user.cpf,
       userId: authResponse.userId
     };
-  }
-
-  private ExecuteCallbackThenResolved(callback, list) {
-    this.petOwnerServicePromisse.then(
-      (val) => {
-        this.petOwnerService = val;
-        callback(list, this);
-        return true;
-      },
-      (err) => {
-        return false;
-      }
-    );
   }
 }
