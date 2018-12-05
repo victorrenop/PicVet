@@ -13,6 +13,7 @@ import { LogoutResponse } from '../models/AuthResponse/logout.response';
 
 import { Storage } from '@ionic/storage';
 import { BaseRestService } from './base-rest-service';
+import { Subject } from 'rxjs/Subject';
 
 
 var headers: Headers;
@@ -31,43 +32,50 @@ export class LoginService {
   private url;
   private petOwnerServicePromisse;
   private petOwnerService;
-  private authUserResponse: any;
 
   constructor(private http: Http, private storage: Storage, public baseRestService: BaseRestService) {
-    this.url = this.baseRestService.url.petServiceUrl;
+    this.url = this.baseRestService.url.petOwnerUrl;
     this.petOwnerServicePromisse = this.baseRestService.DataService<any>(this.url);
   }
 
   CreateUser(user: any) {
+    var subject = new Subject<string>();
+    this.CreateUserAuth(user).subscribe(data => {
 
+      this.petOwnerServicePromisse.then(
+        (val) => {
+          this.petOwnerService = val;
+          this.CreatePetOwner(data.json(), user, this).subscribe((value) => subject.next(value));
+        },
+        (err) => {
+          return false;
+        }
+      );
+    },
+      (error) => {
+        console.log("error: " + error);
+      });
 
-    this.CreateUserAuth(user)
-      .subscribe(data => {
-        this.authUserResponse = data;
-      },
-        (error) => {
-          console.log("error: " + error);
-        });
-
-        console.log(this.authUserResponse);
+    return subject.asObservable();
   }
 
   private CreateUserAuth(user: any) {
-    return this.http.post(`${this.userUrl}/${this.appId}/Create`, this.BuildCreateUserRequest(user), options)
-      .map((data: Response) => { data.json() })
-      .catch((error: Response) => {
-        return Observable.throw(error.status);
-      });
+    return this.http.post(`${this.userUrl}/${this.appId}/Create`, this.BuildCreateUserRequest(user), options);
   }
 
-  private CreatePetOwner(list, self) {
-    console.log("Create Pet Owner");
-    let authResponse = list[0];
-    let user = list[1];
+  private CreatePetOwner(authResponse, user, self) {
+    let resource="/Create";
+    let petOwner = self.BuildCreatePetOwner(authResponse, user)
+    var subject = new Subject<string>();
 
-    console.log(self.BuildCreatePetOwner(authResponse, user));
-    console.log(self.petOwnerService);
-    console.log("Create Pet Owner - FINAl");
+    self.petOwnerService.post(petOwner, resource).subscribe(data => {
+      subject.next(data._body);
+    },
+      (error) => {
+        console.log("error: " + error);
+      });
+
+    return subject.asObservable();
   }
 
   Login(email: string, password: string): Observable<LoginResponse> {
@@ -122,21 +130,8 @@ export class LoginService {
   private BuildCreatePetOwner(authResponse: any, user: any) {
     return {
       name: user.name,
-      cpf: user.cpf,
-      userId: authResponse.id
+      CPF: user.cpf,
+      userId: authResponse.userId
     };
-  }
-
-  private ExecuteCallbackThenResolved(callback, list) {
-    this.petOwnerServicePromisse.then(
-      (val) => {
-        this.petOwnerService = val;
-        callback(list, this);
-        return true;
-      },
-      (err) => {
-        return false;
-      }
-    );
   }
 }

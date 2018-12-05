@@ -1,39 +1,31 @@
 <ion-header>
-  <ion-navbar color="primary">
-  <button ion-button menuToggle>
-  	<ion-icon name="menu"></ion-icon>
-  </button>
-    <ion-title align="center" class="title-button">Detalhes da Conta</ion-title>
-  </ion-navbar>
+	<ion-navbar color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title align="center" class="title-button">Detalhes da Conta</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 <ion-content padding class="profile-page">
-	<!-- <profile-pic [user]="user"></profile-pic> -->
-
-	<!-- <div class="profile-separator"> -->
-	<!-- </div> -->
+	<profile-pic [user]="user"></profile-pic>
 
 	<ion-list class="options-list">
-		<ion-item tappable (click)="alterPassword()">
-			Alterar Senha
-			<ion-icon name="lock" item-end class="text-primary"></ion-icon>
-		</ion-item>
-		<ion-item tappable (click)="alterEmail()">
-			Alterar E-mail
-			<ion-icon name="mail" item-end class="text-primary"></ion-icon>
-		</ion-item>
 		<ion-item tappable (click)="alterName()">
 			Alterar Nome
 			<ion-icon name="contact" item-end class="text-primary"></ion-icon>
 		</ion-item>
-		<ion-item tappable (click)="alterAddress()">
-			Alterar Endereço
-			<ion-icon name="home" item-end class="text-primary"></ion-icon>
+
+		<ion-item tappable (click)="alterEmail()">
+			Alterar E-mail
+			<ion-icon name="mail" item-end class="text-primary"></ion-icon>
 		</ion-item>
-		<ion-item tappable (click)="alterPhone()">
-			Alterar Telefone
-			<ion-icon name="call" item-end class="text-primary"></ion-icon>
+
+		<ion-item tappable (click)="alterPassword()">
+			Alterar Senha
+			<ion-icon name="lock" item-end class="text-primary"></ion-icon>
 		</ion-item>
+
 	</ion-list>
 </ion-content>

@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/toPromise';
 
 import { Storage } from '@ionic/storage';
+import { urlToNavGroupStrings } from 'ionic-angular/umd/navigation/url-serializer';
 
 var headers: Headers;
 headers = new Headers({ 'Content-Type': 'application/json' });
@@ -22,14 +23,15 @@ const options = new RequestOptions({
 @Injectable()
 export class BaseRestService {
 
-    private localBaseUrl: string = "http://localhost:/PicVetAPI/Service";
+    private localBaseUrl: string = "http://localhost:51121/PicVetAPI/Service";
     private mockBaseUrl: string = "http://localhost:3000";
 
     constructor(public http: Http, public storage: Storage) {
     }
 
     public url = {
-        petServiceUrl: this.mockBaseUrl + '/pet',
+        petOwnerUrl: this.localBaseUrl + '/PetOwner',
+        petServiceUrl: this.localBaseUrl + '/Pet',
         bookServiceUrl: this.mockBaseUrl + '/book',
         bookLogServiceUrl: this.mockBaseUrl + '/bookLog',
     };
@@ -45,19 +47,17 @@ export class BaseRestService {
         headers.append('Content-Type', 'application/json');
 
         var requestFunctions = {
-            get: function (data: any): Observable<T> {
+            get: function (data: any, customUrl): Observable<T> {
 
-                let customUrl;
-
-                if (data)
+                if (customUrl)
                 {
-                    customUrl = url + "/" + data.id;
-                }else
-                {
-                    customUrl = url;
+                    if(!url.includes(customUrl))
+                    {
+                        url += customUrl;
+                    }                    
                 }
                 
-                return self.http.get(customUrl, { headers: headers })
+                return self.http.get(url, { headers: headers })
                     .map((data: Response) => data.json())
                     .catch((err: Response) => {
                         return Observable.throw(err);
@@ -84,12 +84,17 @@ export class BaseRestService {
             search: function (currentPage, pageSize, parameters, data) {
 
             },
-            post: function (data) {
-                return this.http.post(`${url}`, data, options)
-                .map((data: Response) => data.json())
-                .catch((error: Response) => {
-                  return Observable.throw(error.status);
-                });
+            post: function (data, customUrl) {
+
+                if (customUrl)
+                {
+                    if(!url.includes(customUrl))
+                    {
+                        url += customUrl;
+                    }                    
+                }
+
+                return self.http.post(`${url}`, data, options);
             },
             reorder: function (entity, parameters) {
 
