@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/toPromise';
 
 import { Storage } from '@ionic/storage';
+import { urlToNavGroupStrings } from 'ionic-angular/umd/navigation/url-serializer';
 
 var headers: Headers;
 headers = new Headers({ 'Content-Type': 'application/json' });
@@ -30,7 +31,7 @@ export class BaseRestService {
 
     public url = {
         petOwnerUrl: this.localBaseUrl + '/PetOwner',
-        petServiceUrl: this.mockBaseUrl + '/pet',
+        petServiceUrl: this.localBaseUrl + '/Pet',
         bookServiceUrl: this.mockBaseUrl + '/book',
         bookLogServiceUrl: this.mockBaseUrl + '/bookLog',
     };
@@ -47,7 +48,15 @@ export class BaseRestService {
 
         var requestFunctions = {
             get: function (data: any, customUrl): Observable<T> {
-                url += customUrl;
+
+                if (customUrl)
+                {
+                    if(!url.includes(customUrl))
+                    {
+                        url += customUrl;
+                    }                    
+                }
+                
                 return self.http.get(url, { headers: headers })
                     .map((data: Response) => data.json())
                     .catch((err: Response) => {
@@ -79,7 +88,10 @@ export class BaseRestService {
 
                 if (customUrl)
                 {
-                    url += customUrl;
+                    if(!url.includes(customUrl))
+                    {
+                        url += customUrl;
+                    }                    
                 }
 
                 return self.http.post(`${url}`, data, options);

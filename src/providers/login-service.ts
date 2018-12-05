@@ -64,7 +64,7 @@ export class LoginService {
   }
 
   private CreatePetOwner(authResponse, user, self) {
-    let resource = "/Create"
+    let resource="/Create";
     let petOwner = self.BuildCreatePetOwner(authResponse, user)
     var subject = new Subject<string>();
 

@@ -29,7 +29,7 @@ export class RegisterPage {
 
 	Register() {
 
-		if (this.registerFormGroup.hasError) {
+		if (!this.registerFormGroup.valid) {
 			this.BuildErrorMessage();
 			return;
 		}

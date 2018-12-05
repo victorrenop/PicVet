@@ -22,7 +22,7 @@ export class LoginPage {
   private username: string;
   private password: string;
   private errorText: string;
-  private user: UserNoPwd;
+  private user: any;
 
   //Control variables
   private emailPattern: string = '^[^\s@]+@[^\s@]+\.[^\s@]{2,}$';
@@ -59,14 +59,10 @@ export class LoginPage {
     this.executeLoginRequest();
   };
 
-  buildUser() {
+  buildUser(data: any) {
     return {
-      name: "Igor",
-      lastName: "Magro",
-      phone: "11987450578",
-      cep: "04814250",
-      email: "iggormagro8@gmail.com",
-      avatar: "../../assets/imgs/random.jpg"
+      name: data.name,
+      cpf: data.CPF
     };
   };
 
@@ -80,9 +76,9 @@ export class LoginPage {
     this.login.Login(this.username, this.password).subscribe(
       data => {
 
-        this.user = this.buildUser();
 
         if (data.isAuthorized) {
+
           this.nav.setRoot('MenuPage', { userData: this.user })
 
           this.storage.set('token', data.token);
@@ -91,10 +87,14 @@ export class LoginPage {
 
           this.petOwnerServicePromise.then((success) => {
             success.get(null, "/SelectByUserId/" + data.userId).subscribe(data => {
-              if (data) this.storage.set("petOwnerId", data.id);
+              if (data)
+              {
+                this.storage.set("petOwnerId", data.id);
+                this.user = this.buildUser(data);
+              } 
             });
           }, (error) => {
-            console.log("KFDP");
+            console.log(error);
           });
 
         }
