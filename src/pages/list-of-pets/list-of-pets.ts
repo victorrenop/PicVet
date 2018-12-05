@@ -25,18 +25,19 @@ export class ListOfPetsPage {
       this.url = this.baseRestService.url.petServiceUrl;
       var petServicePromisse = this.baseRestService.DataService<Pets>(this.url);
 
-      petServicePromisse.then(
+      /*petServicePromisse.then(
         (val) => { 
           this.petService = val
           this.loadAnimals();
         },
         (err) => console.error(err)
-      );
+      );*/
+      this.loadAnimals();
   };
 
   loadAnimals()
   {
-    this.petService.get()
+    /*this.petService.get()
       .subscribe(data =>{    
           let i = 0;
 
@@ -47,7 +48,17 @@ export class ListOfPetsPage {
         },
       (error) => {
         console.log("error: "+ error);
-      });
+      });*/
+      this.pets[0] = {
+        name: 'Pietro',
+        breed: 'Debonio',
+        avatar: '../../assets/imgs/satanas.jpeg'
+      };
+      this.pets[1] = {
+        name: 'Canga',
+        breed: 'Canguru',
+        avatar: '../../assets/imgs/canguru.jpg'
+      };
   };
 
   onSelect(item){

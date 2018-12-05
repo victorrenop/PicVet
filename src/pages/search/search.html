@@ -13,14 +13,14 @@
 <ion-content class="search-page">
 
 	<div class="search-bar">
-		<input type="text" class="css-input loctaion-input" placeholder="O que você está procurando?" style="width: 100%">
+		<input type="text" class="css-input loctaion-input" placeholder="O que você está procurando?" [(ngModel)]="storeName" style="width: 100%">
 	
 		<div class="blank-space"></div>
 
 		<div style="width: 100%; display: inline-block;">
-			<input type="text" class="data-input css-input" placeholder="Onde?">
+			<input type="text" class="data-input css-input" placeholder="Onde?" [(ngModel)]="storeLocation">
 
-			<input type="text" class="data-input-right css-input" placeholder="Quando?">		
+			<input type="text" class="data-input-right css-input" placeholder="Quando?" [(ngModel)]="storeDate">		
 		</div>
 
 		<div class="blank-space"></div>
@@ -54,7 +54,10 @@
 
 	<ion-footer class="information-selector" >
 		<div class="tabs">
-			<label icon-start style="padding-left: 6px;" tappable (click)="selectOrder()"><ion-icon name="list"></ion-icon> Ordenar</label>		</div>
+			<label padding>Resultados ({{results}})</label>
+			<label icon-start style="padding-left: 6px;" tappable (click)="selectOrder()"><ion-icon name="list"></ion-icon> Ordenar</label>
+			<label icon-start style="padding-right: 6px;" tappable (click)="search()"><ion-icon name="search"></ion-icon> Pesquisa</label>
+		</div>
 	</ion-footer>
 	
 </ion-content>
