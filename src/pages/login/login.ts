@@ -88,7 +88,6 @@ export class LoginPage {
             this.storage.set('token', data.token);
             this.storage.set('isAuthorized', data.isAuthorized);
             this.storage.set('userId', data.userId);
-            console.log(data.userId);
           }
       },  
       error =>{

@@ -29,7 +29,7 @@ export class RegisterPage {
 
 	Register() {
 
-		if (this.registerFormGroup.errors) {
+		if (this.registerFormGroup.hasError) {
 			this.BuildErrorMessage();
 			return;
 		}
@@ -37,20 +37,26 @@ export class RegisterPage {
 		this.observable = this.login.CreateUser(this.userData);
 
 		this.observable.subscribe((value) => {
-
 			let jsonResponse = JSON.parse(value);
-			
+
 			if(jsonResponse.id)
 			{
 				this.navCtrl.push('LoginPage');
+			}else
+			{
+				this.BuildErrorCreateMessage();
 			}
-
 		});
 	}
 
 	BuildErrorMessage() {
 		this.error = true;
 		this.errorText = 'Preencha todos os campos corretamente'
+	}
+
+	BuildErrorCreateMessage() {
+		this.error = true;
+		this.errorText = 'Um erro inesperado aconteceu ao criar o usuário'
 	}
 
 	BuildFormGroup() {
