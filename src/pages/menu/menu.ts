@@ -54,12 +54,12 @@ export class MenuPage {
   {
     this.pages = [
       { title: 'Inicial', component: 'HomePage', icon: 'home'},
-      { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'},
-      { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
-      { title: 'Agenda de Serviços', component: 'CalendarPage', icon: 'calendar'},
-      { title: 'Log de serviços', component: 'BookPage', icon: 'md-cart'},
-      { title: 'Carteira de Vacinas', component: 'VaccinePage', icon: 'list'},
-      { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'}
+      { title: 'Buscar estabelecimentos', component: 'SearchPage', icon: 'search'},
+      { title: 'Gerenciar pets', component: 'ListOfPetsPage', icon: 'paw'},
+      { title: 'Agenda de serviços', component: 'CalendarPage', icon: 'calendar'},
+      { title: 'Log de serviços', component: 'BookPage', icon: 'list'},
+      { title: 'Carteira de vacinas', component: 'VaccinePage', icon: 'list'},
+      { title: 'Gerenciar conta', component: 'UserProfilePage', icon: 'contact'}
     ];
   }
 }
