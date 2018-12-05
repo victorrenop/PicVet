@@ -60,6 +60,9 @@ export class LoginPage {
   };
 
   buildUser(data: any) {
+
+    console.log(data);
+
     return {
       name: data.name,
       cpf: data.CPF
@@ -79,7 +82,6 @@ export class LoginPage {
 
         if (data.isAuthorized) {
 
-          this.nav.setRoot('MenuPage', { userData: this.user })
 
           this.storage.set('token', data.token);
           this.storage.set('isAuthorized', data.isAuthorized);
@@ -91,6 +93,7 @@ export class LoginPage {
               {
                 this.storage.set("petOwnerId", data.id);
                 this.user = this.buildUser(data);
+                this.nav.setRoot('MenuPage', { userData: this.user })
               } 
             });
           }, (error) => {

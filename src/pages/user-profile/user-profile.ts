@@ -17,10 +17,8 @@ export class UserProfilePage {
               public toastCtrl: ToastController, private alertCtrl: AlertController,
               private cepService: CepService) {
     this.user = this.navParams.get('userData');
-    console.log(this.user.cep);
-    this.cepService.GetCep(this.user.cep).subscribe((data: CepInterface ) => {
-      this.add = data;
-    });
+
+    console.log(this.user);
   }
 
   changeAvatar(){
@@ -78,7 +76,6 @@ export class UserProfilePage {
   alterEmail(){
     let alert = this.alertCtrl.create({
       title: "Mudar o email da conta",
-      message: "Email antigo: " + this.user.email,
       inputs: [
       {
         name: 'Email',
@@ -127,54 +124,4 @@ export class UserProfilePage {
     });
     alert.present();
   }
-
-  alterAddress(){
-    let alert = this.alertCtrl.create({
-      title: "Mudar o endereço da conta",
-      message: this.add.logradouro,
-      inputs: [
-      {
-        name: 'Add',
-        placeholder: this.add.cep
-      },
-      ],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: data =>{
-            
-          }
-        },
-        {
-          text: 'Cancelar',
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  alterPhone(){
-    let alert = this.alertCtrl.create({
-      title: "Mudar o telefone da conta",
-      inputs: [
-      {
-        name: 'Cel',
-        placeholder: this.user.phone
-      },
-      ],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: data =>{
-            
-          }
-        },
-        {
-          text: 'Cancelar',
-        }
-      ]
-    });
-    alert.present();
-  }
-
 }

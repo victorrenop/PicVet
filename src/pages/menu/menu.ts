@@ -23,6 +23,7 @@ export class MenuPage {
 
   	this.buildPageValues();
     this.user = this.navParams.get('userData');
+    console.log(this.user);
     this.menu.enable(true);
   
   }
