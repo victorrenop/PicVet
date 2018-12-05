@@ -53,6 +53,7 @@ export class ListOfPetsPage {
 
           for (let p in data) {
             this.pets[i] = data[i]
+            this.pets[i].avatar = "../assets/imgs/dog.png"
             i++;
           }
         },
