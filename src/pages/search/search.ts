@@ -44,6 +44,7 @@ export class SearchPage {
 	};
 	private results: number;
 	private sts: StoreInterface[] = [];
+  private selected: StoreInterface[] = [];
 
 
 
@@ -92,7 +93,65 @@ export class SearchPage {
         {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}
       ]
   	};
-  	this.results = this.sts.length;
+
+    this.sts[2] = {
+      address: "Avenida Orual Salvador, 590, Jd. Sta. Maria",
+      name: "Walking With Dogs",
+      logo: "../../assets/walk.png",
+      totalRatings: 137,
+      meanRating: 4.2,
+      open: "Terca a Domingo",
+      types:[
+        "Exames",
+        "Consultas",
+        "Banho",
+        "Tosa"
+      ],
+      services:[
+        {name: "Exame do Pet", type: "Exames", details: "Exame com o a escolha de horario e medico", priceRange: "50-150", date: "Terca a Sexta"},
+        {name: "Consulta Especializada", type: "Consultas", details: "Consulta para diversos tipos de problemas", priceRange: "100-150", date: "Terca a Sexta"},
+        {name: "Banho Completo", type: "Banho", details: "Banho com direito a shampoo premium", priceRange: "30-80", date: "Toda Semana"},
+        {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}
+      ]
+    };
+
+    this.sts[3] = {
+      address: "Avenida Oscar Bagatini, 501, Parque Brasil",
+      name: "Pet Center",
+      logo: "../../assets/center.png",
+      totalRatings: 137,
+      meanRating: 4.7,
+      open: "Segunda a Sexta",
+      types:[
+        "Banho",
+        "Tosa"
+      ],
+      services:[
+        {name: "Banho Completo", type: "Banho", details: "Banho com direito a shampoo premium", priceRange: "30-80", date: "Toda Semana"},
+        {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}
+      ]
+    };
+
+
+    this.sts[4] = {
+      address: "Rua Denise, 47, Centro",
+      name: "Dogs Dream",
+      logo: "../../assets/dream.png",
+      totalRatings: 82,
+      meanRating: 3.9,
+      open: "Segunda a Sabado",
+      types:[
+        "Banho",
+        "Tosa"
+      ],
+      services:[
+        {name: "Banho Completo", type: "Banho", details: "Banho com direito a shampoo premium", priceRange: "30-80", date: "Toda Semana"},
+        {name: "Tosa a Escolha", type: "Tosa", details: "Tosa a escolha do cliente", priceRange: "20-100", date: "Toda Semana"}
+      ]
+    };
+
+    this.results = this.sts.length;
+    this.selected = this.sts;
   }
 
   selectOrder(){
@@ -266,6 +325,21 @@ export class SearchPage {
   }
 
   search(){
+
+    let i =0;
+    this.selected = [];
+    if( this.storeName ){
+      for( let p in this.sts ){
+        if( this.sts[i].name === this.storeName ){
+          this.selected.push(this.sts[i]);
+        }
+        i++;
+      }
+    }
+    else{
+      this.selected = this.sts;
+    }
+
     console.log( this.storeDate);
     console.log( this.storeName);
     console.log( this.storeLocation);
