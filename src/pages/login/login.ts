@@ -81,7 +81,8 @@ export class LoginPage {
 
           this.user = this.buildUser();
 
-          if(data.isAuthorized){
+          if(data.isAuthorized)
+          {
             this.nav.setRoot('MenuPage', {userData: this.user})
             
             this.storage.set('token', data.token);
