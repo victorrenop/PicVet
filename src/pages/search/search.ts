@@ -227,42 +227,8 @@ export class SearchPage {
 	  }
   }
 
-  toggleMap(){
-  	this.maps = !this.maps;
-  	/*if( this.map != undefined )
-  		this.map.remove();
-  	if( this.maps )
-  		this.showMap();*/
-  }
-
-  getPosition(){
-    this.geolocation.getCurrentPosition().then( resp => {
-      console.log(resp.coords.latitude);
-      console.log(resp.coords.longitude);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
-
-  showMap(){
-    this.getPosition();
-    console.log(this.pos);
-    var mymap = L.map('map').setView([51.505, -0.09], 13);
-	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-	    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	    maxZoom: 18,
-	    id: 'mapbox.streets',
-	    accessToken: 'pk.eyJ1IjoidmljdG9ycmVubyIsImEiOiJjam4ybHozaDQwbzU1M3ZuZDNraHdndmJ0In0.GRn1RsamZemHOmnn504lng'
-		}).addTo(mymap);
-    var circle = L.circle([51.508, -0.11], {
-	    color: 'red',
-	    fillColor: '#f03',
-	    fillOpacity: 0.5,
-	    radius: 500
-		}).addTo(mymap);
-  }
-
+ 
+	
   setAllTabs(){
   	this.tabs.cons = false;
   	this.tabs.exam = false;
@@ -271,22 +237,18 @@ export class SearchPage {
   }
 
   toggleCons(){
-  	//this.setAllTabs();
   	this.tabs.cons = !this.tabs.cons;
   }
 
   toggleExam(){
-  	//this.setAllTabs();
   	this.tabs.exam = !this.tabs.exam;	
   }
 
   toggleBath(){
-  	//this.setAllTabs();
   	this.tabs.bath = !this.tabs.bath;	
   }
 
   toggleTosa(){
-  	//this.setAllTabs();
   	this.tabs.tosa = !this.tabs.tosa;	
   }
 

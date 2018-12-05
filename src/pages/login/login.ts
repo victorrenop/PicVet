@@ -76,7 +76,7 @@ export class LoginPage {
 
   executeLoginRequest()
   {
-      /*this.login.Login(this.username, this.password).subscribe(
+      this.login.Login(this.username, this.password).subscribe(
         data =>{
 
           this.user = this.buildUser();
@@ -86,8 +86,9 @@ export class LoginPage {
             
             this.storage.set('token', data.token);
             this.storage.set('isAuthorized', data.isAuthorized);
+            this.storage.set('userId', data.userId);
+            console.log(data.userId);
           }
-
       },  
       error =>{
           if(error === 401)
@@ -95,9 +96,7 @@ export class LoginPage {
             this.errorText = 'Usuário não autorizado'
             this.error = true;
           }
-      })*/
-      this.user = this.buildUser();
-      this.nav.setRoot('MenuPage', {userData: this.user});
+      })
   };
 
   registerLoginValidators()

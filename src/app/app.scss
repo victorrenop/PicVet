@@ -174,7 +174,8 @@
       .tabs-selector{
         .tabs{
           align-items: center;
-          padding-left: 12px;
+          padding-left: 3%;
+
           .active{
             color: white;
             border-bottom: 2px solid white;
@@ -248,6 +249,15 @@
       }
     }
   }
+}
+
+.add-pet-page
+{
+  .add-pet-button{
+    background-color: darken(color($colors, primary), 35%);
+    margin-top: 50px;
+  }
+
 }
 
 .profile-page{
@@ -338,7 +348,7 @@
 
 
     .login-button{
-      background-color: darken(color($colors, primary), 35%);
+      background-color: primary;
       margin-top: 50px;
     }
 
@@ -394,7 +404,7 @@
       }
 
       .login-button{
-      	background-color: darken(color($colors, primary), 35%);
+      	background-color: primary;
         margin-top: 50px;
       }
 

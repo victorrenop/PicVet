@@ -56,7 +56,7 @@ export class ListOfPetsPage {
 
   addPet()
   {
-    this.navCtrl.push(AddPetPage);
+    this.navCtrl.push('AddPetPage');
   }
  
   ionViewDidLoad() {

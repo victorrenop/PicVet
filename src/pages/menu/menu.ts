@@ -33,7 +33,7 @@ export class MenuPage {
 
   logOut(){
 
-      /*this.loginService.Logout()
+      this.loginService.Logout()
       .then((isLoggedOut) =>
       {
         if (isLoggedOut)
@@ -46,8 +46,7 @@ export class MenuPage {
       },(err) =>
       {
             console.log("Erro ao deslogar:" + err);        
-      });*/
-      this.nav.setRoot('LoginPage');
+      });
   }
 
   buildPageValues()
@@ -55,10 +54,9 @@ export class MenuPage {
     this.pages = [
       { title: 'Inical', component: 'HomePage', icon: 'home'},
       { title: 'Buscar Estabelecimentos', component: 'SearchPage', icon: 'search'},
-      { title: 'Serviços', component: 'BookPage', icon: 'md-cart'},
       { title: 'Gerenciar Pets', component: 'ListOfPetsPage', icon: 'paw'},
-      { title: 'Pesquisa de Serviços', component: 'SearchPage', icon: 'search'},
       { title: 'Agenda de Serviços', component: 'CalendarPage', icon: 'calendar'},
+      { title: 'Log de serviços', component: 'BookPage', icon: 'md-cart'},
       { title: 'Carteira de Vacinas', component: 'VaccinePage', icon: 'list'},
       { title: 'Gerenciar Conta', component: 'UserProfilePage', icon: 'contact'}
     ];

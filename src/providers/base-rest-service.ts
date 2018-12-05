@@ -10,11 +10,19 @@ import 'rxjs/add/operator/toPromise';
 
 import { Storage } from '@ionic/storage';
 
+var headers: Headers;
+headers = new Headers({ 'Content-Type': 'application/json' });
+
+const options = new RequestOptions({
+  method: RequestMethod.Post,
+  headers: headers,
+});
+
 
 @Injectable()
 export class BaseRestService {
 
-    private localBaseUrl: string = "http://localhost:53213";
+    private localBaseUrl: string = "http://localhost:/PicVetAPI/Service";
     private mockBaseUrl: string = "http://localhost:3000";
 
     constructor(public http: Http, public storage: Storage) {
@@ -77,7 +85,11 @@ export class BaseRestService {
 
             },
             post: function (data) {
-
+                return this.http.post(`${url}`, data, options)
+                .map((data: Response) => data.json())
+                .catch((error: Response) => {
+                  return Observable.throw(error.status);
+                });
             },
             reorder: function (entity, parameters) {
 

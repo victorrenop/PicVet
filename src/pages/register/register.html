@@ -6,62 +6,49 @@
 
 </ion-header>
 
-
 <ion-content padding class="register-page">
-	<form class="list-form" #f="ngForm" [formGroup]="loginFormGroup" (ngSubmit)="onSubmit(f)" novalidate>
+	<form class="list-form" #f="ngForm" [formGroup]="registerFormGroup" (ngSubmit)="Register()" novalidate>
+    
     <ion-item>
       <ion-label floating>
         <ion-icon name="mail" item-start class="text-primary"></ion-icon>
         Email
       </ion-label>
-      <ion-input  name="email" type="email" formControlName="email" [(ngModel)]="username" ngModel required ></ion-input>
+      <ion-input  name="email" type="email" formControlName="email" [(ngModel)]="userData.email" ngModel required ></ion-input>
     </ion-item>
-    <p *ngIf="errors[0].cond" text-left ion-text color="danger">{{errors[0].message}}</p>
 
     <ion-item>
       <ion-label floating>
         <ion-icon name="lock" item-start class="text-primary"></ion-icon>
         Senha
       </ion-label>
-      <ion-input name="passwd" type="password" formControlName="password" [(ngModel)]="password" ngModel required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>
-        <ion-icon name="call" item-start class="text-primary"></ion-icon>
-        Telefone
-      </ion-label>
-      <ion-input name="phone" type="tel" formControlName="phone" [(ngModel)]="phone" ngModel required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>
-        <ion-icon name="home" item-start class="text-primary"></ion-icon>
-        CEP
-      </ion-label>
-      <ion-input name="cep" type="text" formControlName="cep" [(ngModel)]="cep" ngModel required></ion-input>
+      <ion-input name="password" type="password" formControlName="password" [(ngModel)]="userData.password" ngModel required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>
         Nome
       </ion-label>
-      <ion-input name="name" type="text" formControlName="name" [(ngModel)]="name" ngModel required></ion-input>
+      <ion-input name="name" type="text" formControlName="name" [(ngModel)]="userData.name" ngModel required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>
-        Sobrenome
+        CPF
       </ion-label>
-      <ion-input name="lastName" type="text" formControlName="lastName" [(ngModel)]="lastName" ngModel required></ion-input>
+      <ion-input name="cpf" type="text" formControlName="cpf" [(ngModel)]="userData.cpf" ngModel required></ion-input>
     </ion-item>
-  </form>
 
-  <div>
-    <button ion-button icon-start round full tappable class="login-button" (click)="register()">
+    <button type="submit" ion-button icon-start round full tappable class="login-button">
       <ion-icon name="log-in"></ion-icon>
       CADASTRAR-SE
     </button>
-  </div>
+
+    <ion-item *ngIf="error">
+      <p  text-left ion-text color="danger">{{errorText}}</p>
+    </ion-item>
+
+
+  </form>
 
 </ion-content>
